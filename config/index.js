@@ -2,26 +2,24 @@ const os = require('os')
 const path = require('path')
 
 exports.APP = {
-  website: 'https://ark.io',
+  website: 'https://qredit.io',
   transactionExpiryMinutes: 45
 }
 
 exports.NETWORKS = [
-  require('./networks/mainnet.json'),
-  require('./networks/devnet.json')
+  require('./networks/mainnet.json')
 ]
 
 exports.PEERS = {
-  'ark.mainnet': require('./peers/mainnet.json'),
-  'ark.devnet': require('./peers/devnet.json')
+  'ark.mainnet': require('./peers/mainnet.json')
 }
 
 exports.ANNOUNCEMENTS = {
-  rssUrl: 'https://blog.ark.io/feed'
+  rssUrl: 'https://medium.com/feed/@hodlerenterprises'
 }
 
 exports.VENDOR_FIELD = {
-  defaultMaxLength: 64
+  defaultMaxLength: 255
 }
 
 exports.I18N = {

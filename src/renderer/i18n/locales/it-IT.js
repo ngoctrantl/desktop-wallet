@@ -2,8 +2,8 @@ export default {
   COMMON: {
     ADDRESS: 'Indirizzo',
     ALL: 'Tutto',
-    APP_NAME: 'ARK Desktop Wallet',
-    APP_NAME_SHORT: 'ARK Desktop',
+    APP_NAME: 'Qredit Desktop Wallet',
+    APP_NAME_SHORT: 'Qredit Desktop',
     APPEARANCE: 'Aspetto',
     AVATAR: 'Avatar',
     BACK: 'Indietro',
@@ -17,7 +17,6 @@ export default {
     FAILED_FETCH: 'Impossibile recuperare {name}. Motivo: "{msg}".',
     FETCH: 'Recupera',
     FINISH: 'Fine',
-    HIDE_WALLET_BUTTON_TEXT: 'Nascondi il testo dai pulsanti del portafoglio',
     IS_MARKET_CHART_ENABLED: 'Grafico prezzo in dashboard',
     LANGUAGE: 'Lingua Applicazione',
     LEDGER: 'Ledger',
@@ -45,7 +44,7 @@ export default {
   ANNOUNCEMENTS: {
     LATEST_NEWS: 'Ultime News',
     READ_MORE: 'Leggi di più',
-    ALL_READ: 'Segna tutto come già letto'
+    ALL_READ: 'Segna come già letto'
   },
 
   INTRODUCTION: {
@@ -67,7 +66,7 @@ export default {
       OWNER: 'Questo porta anche a maggiori responsabilità nei tuoi confronti, il proprietario del conto',
       WARNING: {
         ACCOUNT: 'A differenza del tuo conto bancario tradizionale, {CANNOT_RESTORE}',
-        CANNOT_RESTORE: 'password perdute, frasi segrete o fondi rubati non potranno essere ripristinati dal team ARK , dai Delegati e da nessun altro.'
+        CANNOT_RESTORE: 'password perdute, frasi segrete o fondi rubati non potranno essere ripristinati dal team Qredit , dai Delegati e da nessun altro.'
       },
       SECURITY: 'La sicurezza del tuo conto spetta esclusivamente a te.'
     },
@@ -87,9 +86,9 @@ export default {
     },
     TURN: {
       TITLE: 'Il tuo Turno',
-      KNOWLEDGE: 'Ora, armato della consapevolezza di quanto sia importante mantenere al sicuro le tue frasi segrete, sei pronto a rivendicare la tua autonomia finanziaria con ARK Desktop Wallet.',
-      SUPPORT: 'ARK è un ecosistema open source e se hai bisogno di assistenza, la community e il team ARK sono qui per aiutarti. Crea un post su reddit.ark.io o unisciti al sistema di chat in tempo reale su slack.ark.io.',
-      CONCLUSION: 'Tutti qui, al team di ARK.io, speriamo ti piacerà utilizzare l\'ARK Desktop Wallet e partecipare alla rivoluzione blockchain!'
+      KNOWLEDGE: 'Ora, armato della consapevolezza di quanto sia importante mantenere al sicuro le tue frasi segrete, sei pronto a rivendicare la tua autonomia finanziaria con Qredit Desktop Wallet.',
+      SUPPORT: 'ARK è un ecosistema open source e se hai bisogno di assistenza, la community e il team Qredit sono qui per aiutarti. Crea un post su qredit.io/go/reddit o unisciti al sistema di chat in tempo reale su qredit.io/go/discord.',
+      CONCLUSION: 'Tutti qui, al team di Qredit.io, speraiamo ti piacerà utilizzare l\'Qredit Desktop Wallet e partecipare nella rivoluzione blockchain!'
     }
   },
 
@@ -162,8 +161,7 @@ export default {
       INVALID_LENGTH: 'La chiave pubblica deve avere una lunghezza di 66 caratteri'
     },
     VENDOR_FIELD: {
-      LIMIT_REACHED: 'È possibile inserire un massimo di {0} caratteri',
-      LIMIT_REMAINING: '{0}/{1} Rimanente'
+      LIMIT_REACHED: 'È possibile inserire un massimo di {0} caratteri'
     },
     REQUIRED: '\'{0}\' indispensabile',
     SEND_NOT_ENABLED: 'L\'invio non è abilitato per il portafoglio selezionato',
@@ -220,7 +218,7 @@ export default {
   },
 
   APP_FOOTER: {
-    TEXT: 'Fatto con ♥ da Ark'
+    TEXT: 'Fatto con ♥ da Qredit'
   },
 
   APP_SIDEMENU: {
@@ -230,8 +228,6 @@ export default {
     DASHBOARD: 'Dashboard',
     NETWORK: 'Rete',
     NETWORKS: 'Gestisci reti',
-    PLUGINS: 'Plugin',
-    PLUGINS_PAGES: 'Pagine Plugin',
     SETTINGS: {
       CURRENCY: 'Valuta',
       DARK_MODE: 'Modalità scura',
@@ -243,8 +239,7 @@ export default {
         TITLE: 'Resetta i dati',
         QUESTION: 'Sei sicuro di voler eliminare i tuoi dati?',
         NOTE: 'Tutti i tuoi dati, inclusi profili, portafogli, reti e contatti verranno rimossi dall\'app e ripristinati sui valori predefiniti. I dati, come le transazioni, che sono sulla blockchain non possono essere rimossi.'
-      },
-      THEME: 'Tema'
+      }
     },
     WALLETS: 'I miei portafogli'
   },
@@ -252,14 +247,6 @@ export default {
   APP_SIDEMENU_NOTIFICATION: {
     NOTIFICATION: 'Una nuova versione ({version}) è stata rilasciata. Aggiorna ora!',
     TOOLTIP: 'La nuova versione ({version}) è stata rilasciata!'
-  },
-
-  APP_SIDEMENU_PLUGIN_CONFIRMATION: {
-    QUESTION: 'Sei sicuro di voler abilitare il sistema di plugin?',
-    NO: 'No, tienilo disabilitato',
-    YES: 'Sì, abilitalo',
-    NOTICE: 'ATTENZIONE: questo sistema è attualmente in BETA. Tutti i plugin non ufficiali sono utilizzati a proprio rischio. Al momento non possiamo verificare la sicurezza di qualsiasi plugin di terze parti e tutti i test sulla sicurezza e la scoperta delle vulnerabilità sono responsabilità dell\'autore del plugin. Accettando questo avviso, l\'utente riconosce di utilizzare plugin di terze parti a proprio rischio.',
-    WARNING: 'Si prega di prestare molta attenzione e di procedere con cautela nell\'installare i plugin'
   },
 
   MARKET_CHART: {
@@ -436,7 +423,7 @@ export default {
     VALIDATING: 'Validazione dettagli peer...',
     PLACEHOLDER: {
       HOST: 'http://1.2.3.4',
-      PORT: '4003'
+      PORT: '4103'
     }
   },
 
@@ -510,13 +497,6 @@ export default {
       NEW_NETWORK: 'Nuova rete'
     },
 
-    PLUGINS: {
-      HEADER: 'Plugin',
-      DISCOVER: 'Esplora i Plugin',
-      OPEN: 'Apri i Plugin',
-      RELOAD: 'Ricarica i Plugin'
-    },
-
     PROFILE_ALL: {
       HEADER: 'I miei profili',
       ADD_PROFILE: 'Aggiungi profilo',
@@ -529,11 +509,12 @@ export default {
       STEP1: {
         INSTRUCTIONS: {
           HEADER: 'Crea un profilo',
-          TEXT: 'Inserisci il tuo nome o nickname, seleziona la lingua preferita e la valuta predefinita.'
+          TEXT: 'Inserisci il tuo nome o nickname e seleziona la lingua preferita e la valuta predefinita.'
         },
         NAME: 'Nome profilo',
         TITLE: '1. Dettagli profilo',
-        AVATAR: 'Seleziona il tuo avatar preferito o la prima lettera del nome del tuo profilo'
+        AVATAR: 'Seleziona il tuo avatar preferito o la prima lettera del nome del tuo profilo',
+        NO_AVATAR: 'Nessun Avatar'
       },
       STEP2: {
         INSTRUCTIONS: {
@@ -585,7 +566,7 @@ export default {
 
     WALLET_EXCHANGE: {
       CHANGELLY_TERMS: {
-        TITLE: 'Acquista {ticker} direttamente dall\'ARK Desktop Wallet tramite la nostra integrazione di Changelly',
+        TITLE: 'Acquista {ticker} direttamente dall\'Qredit Desktop Wallet tramite la nostra integrazione di Changelly',
         CONTENT: 'Changelly ti permette di scambiare altre criptovalute in {ticker} ed ha un\'opzione per acquistare {ticker} direttamente tramite le tue carte di credito o di debito.',
         CONFIRMATION: 'Ho letto e sono d\'accordo con i termini {terms} e {privacy} di Changelly. Facendo clic su {button}, riconosco e comprendo che la mia transazione potrebbe attivare la verifica AML/KYC in conformità con Changelly {kyc}.',
         TERMS_OF_USE: 'termini d\'uso',
@@ -598,8 +579,7 @@ export default {
       LEDGER: {
         CACHE: 'Metti in cache portafoglio Ledger?',
         CACHE_INFO: 'Metti in cache i portafogli dal tuo Ledger per accelerare il caricamento quando si è connessi per la prima volta',
-        ADDITIONAL: '# di Portafogli Ledger',
-        OPTIONS: 'Opzioni Ledger'
+        ADDITIONAL: '# di Portafogli Ledger'
       },
       CREATE_WALLET: 'Crea portafoglio',
       DELETE_WALLET: 'Elimina questo portafoglio',
@@ -701,27 +681,6 @@ export default {
     }
   },
 
-  PLUGIN_ENABLE_CONFIRMATION: {
-    QUESTION: 'Sei sicuro di voler attivare questo plugin?',
-    NO: 'No, tenerlo disattivato',
-    YES: 'Si, attiva'
-  },
-
-  PLUGIN_TABLE: {
-    ACTIONS: 'Azioni',
-    ENABLE: 'Attiva',
-    ENABLED: 'Attivato',
-    DESCRIPTION: 'Descrizione',
-    DISABLE: 'Disattiva',
-    DISABLED: 'Disattivato',
-    ID: 'ID',
-    NAME: 'Nome',
-    NO_PERMISSIONS: 'Nessun permesso',
-    NO_PLUGINS: 'Nessun plugin disponibile',
-    PERMISSIONS: 'Permessi',
-    STATUS: 'Stato'
-  },
-
   PROFILE_LEAVING_CONFIRMATION: {
     QUESTION: 'Sei sicuro di voler ignorare le modifiche apportate a questo profilo?',
     NO: 'No, salvale',
@@ -734,10 +693,8 @@ export default {
   },
 
   SELECTION_AVATAR: {
-    ADDITIONAL_AVATARS: 'Avatar aggiuntivi',
-    AVATARS: 'Avatar',
-    MODAL_HEADER: 'Seleziona avatar',
-    NO_AVATAR: 'Nessun Avatar'
+    AVATARS: 'Avatars',
+    MODAL_HEADER: 'Seleziona avatar'
   },
 
   SELECTION_BACKGROUND: {
@@ -757,7 +714,7 @@ export default {
       DELEGATE_REGISTRATION: 'Registrazione Delegato',
       VOTE: 'Voto',
       UNVOTE: 'Voto Rimosso',
-      MULTI_SIGNATURE: 'Firma-Multipla',
+      MULTI_SIGNATURE: 'Multi Signature',
       IPFS: 'IPFS',
       TIMELOCK_TRANSFER: 'Trasferimneto Timelock',
       MULTI_PAYMENT: 'Pagamento Multiplo',
@@ -769,7 +726,7 @@ export default {
       DELEGATE_REGISTRATION: 'Impossibile registrare come Delegato',
       VOTE: 'Impossibile registrare il voto',
       UNVOTE: 'Impossibile registrare la rimozione del voto',
-      MULTI_SIGNATURE: 'Impossibile creare firma-multipla',
+      MULTI_SIGNATURE: 'Impossibile creare firma multipla',
       IPFS: 'IPFS',
       TIMELOCK_TRANSFER: 'Impossibile creare trasferimento Timelock',
       MULTI_PAYMENT: 'Impossibile creare pagamento multiplo',
@@ -782,6 +739,14 @@ export default {
     FOOTER_TEXT: {
       DELEGATE_REGISTRATION: 'Tieni presente che non è possibile modificare il nome del Delegato dopo che la registrazione è stata registrata sulla blockchain.'
     },
+    FORM: {
+      DELEGATE_REGISTRATION: {
+        INSTRUCTIONS: 'per {address}.'
+      },
+      SECOND_SIGNATURE: {
+        INSTRUCTIONS: 'per {address}.'
+      }
+    },
     INFO: {
       BROADCASTING: 'La tua transazione viene trasmessa alla rete',
       BROADCASTING_SLOW: 'Sembra che ci voglia un po\'per trasmettere la tua transazione. È possibile chiudere la finestra e continuerà a trasmettere in background.'
@@ -792,7 +757,7 @@ export default {
       DELEGATE_REGISTRATION: 'Registrato con successo come Delegato',
       VOTE: 'Votato con successo',
       UNVOTE: 'Voto rimosso con successo',
-      MULTI_SIGNATURE: 'Firma-multipla creata con successo',
+      MULTI_SIGNATURE: 'Firma multipla creata con successo',
       IPFS: 'IPFS',
       TIMELOCK_TRANSFER: 'Trasferimento Timelock creato con successo',
       MULTI_PAYMENT: 'Pagamento multiplo creato con successo',
@@ -930,20 +895,22 @@ export default {
   WALLET_DELEGATES: {
     RANK: 'Rango',
     USERNAME: 'Username',
+    PRODUCTIVITY: 'Produttività',
     RANK_BANNER: 'Rango: {rank}',
+    PRODUCTIVITY_BANNER: 'Produttività: {productivity}',
     APPROVAL: 'Voto %',
     FORGED: 'Forgiati',
     BLOCKS: 'Blocchi',
+    MISSED: 'mancati',
     VOTERS: 'Votanti',
     UNVOTE: 'Rimuovi voto',
     VOTES: 'Voti',
     VOTE: 'Vota',
-    USERNAME_EMPTY_ERROR: 'Lo username deve avere almeno 1 carattere',
     USERNAME_ERROR: 'Nessun carattere speciale o maiuscolo consentito',
     USERNAME_MAX_LENGTH_ERROR: 'Il nome utente deve essere inferiore o uguale a 20 caratteri',
     ALREADY_REGISTERED: 'Questo portafoglio è già registrato come Delegato',
     BLOG: 'Guida al voto',
-    EXPLANATION: 'Il voto è opzionale, ma importante, che mantiene la rete Ark sicura. I 51 delegati con il maggior numero di voti della rete sono responsabili della verifica e della forgiatura di transazioni in nuovi blocchi. Questa pagina può essere utilizzata per esprimere il tuo voto per un delegato che vuoi supportare. Ulteriori informazioni sul voto per un delegato sono disponibili al seguente link:',
+    EXPLANATION: 'Il voto è opzionale, ma importante, che mantiene la rete Qredit sicura. I 51 delegati con il maggior numero di voti della rete sono responsabili della verifica e della forgiatura di transazioni in nuovi blocchi. Questa pagina può essere utilizzata per esprimere il tuo voto per un delegato che vuoi supportare. Ulteriori informazioni sul voto per un delegato sono disponibili al seguente link:',
     VOTE_DELEGATE: 'Vota Delegato {delegate}',
     UNVOTE_DELEGATE: 'Rimuovi voto a Delegato {delegate}',
     CURRENTLY_VOTED: 'Al momento hai votato per {delegato}',

@@ -1,19 +1,19 @@
-# Ark Desktop Wallet
+# Qredit Desktop Portal
 
-![Ark Desktop Wallet](./banner.png)
+![Qredit Desktop Portal](./banner.png)
 
-[![Build Status](https://badgen.now.sh/circleci/github/ArkEcosystem/desktop-wallet)](https://circleci.com/gh/ArkEcosystem/desktop-wallet)
-[![Latest Version](https://badgen.now.sh/github/release/ArkEcosystem/desktop-wallet)](https://github.com/ArkEcosystem/desktop-wallet/releases)
+[![Build Status](https://badgen.now.sh/circleci/github/qredit/desktop-wallet)](https://circleci.com/gh/ArkEcosystem/desktop-wallet)
+[![Latest Version](https://badgen.now.sh/github/release/qredit/desktop-wallet)](https://github.com/ArkEcosystem/desktop-wallet/releases)
 [![License: MIT](https://badgen.now.sh/badge/license/MIT/green)](https://opensource.org/licenses/MIT)
 
 ## Download
-[Latest Release](https://github.com/ArkEcosystem/ark-desktop/releases)
+[Latest Release](https://github.com/qredit/qredit-desktop/releases)
 
 ## Installing via Package Managers
 
 ### Arch Linux
 
-Install via [AUR](https://aur.archlinux.org/packages/ark-desktop):
+Install via [AUR](https://aur.archlinux.org/packages/qredit-desktop):
 
 > Manjaro
 

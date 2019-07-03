@@ -1,24 +1,24 @@
 {
   "private": true,
-  "name": "ark-desktop-wallet",
+  "name": "qredit-desktop-wallet",
   "version": "2.5.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ArkEcosystem/desktop-wallet.git"
+    "url": "git+https://github.com/qredit/desktop-wallet.git"
   },
-  "author": "ArkEcosystem <info@ark.io>",
+  "author": "Qredit <nayiem@qredit.io>",
   "contributors": [
     "Alex Barnsley <alex@ark.io>",
     "ItsANameToo <itsanametoo@protonmail.com>",
     "Juan A. Martín <juan@ark.io>",
     "Lúcio Rubens <lucio@ark.io>"
   ],
-  "description": "Ark Ecosystem Desktop Wallet",
+  "description": "Qredit Enhanced Blockchain Suite",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ArkEcosystem/desktop-wallet/issues"
+    "url": "https://github.com/qredit/desktop-wallet/issues"
   },
-  "homepage": "https://github.com/ArkEcosystem/desktop-wallet#readme",
+  "homepage": "https://github.com/qredit/desktop-wallet#readme",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
@@ -166,8 +166,8 @@
     "webpack-hot-middleware": "^2.24.3"
   },
   "build": {
-    "productName": "Ark Desktop Wallet",
-    "appId": "io.ark.desktop-wallet",
+    "productName": "Qredit Desktop Portal",
+    "appId": "io.qredit.desktop-wallet",
     "compression": "maximum",
     "artifactName": "${name}-${os}-${arch}-${version}.${ext}",
     "protocols": {
@@ -193,7 +193,7 @@
     },
     "linux": {
       "category": "Utility",
-      "executableName": "ark-desktop-wallet",
+      "executableName": "qredit-desktop-portal",
       "icon": "build/icons",
       "target": [
         "AppImage",
@@ -201,7 +201,7 @@
         "tar.gz"
       ],
       "desktop": {
-        "MimeType": "x-scheme-handler/ark;"
+        "MimeType": "x-scheme-handler/qredit;"
       }
     },
     "deb": {
