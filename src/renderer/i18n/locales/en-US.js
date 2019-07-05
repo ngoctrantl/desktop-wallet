@@ -3,7 +3,7 @@ export default {
     ADDRESS: 'Address',
     ALL: 'All',
     APP_NAME: 'Qredit Desktop Portal',
-    APP_NAME_SHORT: 'Qredit Desktop',
+    APP_NAME_SHORT: 'Qredit Desktop Portal',
     APPEARANCE: 'Appearance',
     AVATAR: 'Avatar',
     BACK: 'Back',
