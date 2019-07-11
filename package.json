@@ -173,7 +173,7 @@
     "protocols": {
       "name": "Ark URI scheme",
       "schemes": [
-        "ark"
+        "qredit"
       ],
       "role": "Viewer"
     },
