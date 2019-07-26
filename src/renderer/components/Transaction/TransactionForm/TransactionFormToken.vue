@@ -3,8 +3,7 @@
     class="flex flex-col"
     @submit.prevent
   >
-
-  <ListDivided
+    <ListDivided
       v-if="senderLabel"
       :is-floating-label="true"
     >
@@ -27,14 +26,33 @@
       class="flex-1"
     />
     <select v-model="$v.qae.type.$model">
-      <option selected value="SEND">Send</option>
-      <option value="GENESIS">Genesis (Create New Token)</option>
-      <option disabled>───── Advanced ─────</option>
-      <option value="BURN">Burn</option>
-      <option value="MINT">Mint</option>
-      <option value="PAUSE">Pause</option>
-      <option value="RESUME">Resume</option>
-      <option value="NEWOWNER">Newowner</option>
+      <option
+        selected
+        value="SEND"
+      >
+        Send
+      </option>
+      <option value="GENESIS">
+        Genesis (Create New Token)
+      </option>
+      <option disabled>
+        ───── Advanced ─────
+      </option>
+      <option value="BURN">
+        Burn
+      </option>
+      <option value="MINT">
+        Mint
+      </option>
+      <option value="PAUSE">
+        Pause
+      </option>
+      <option value="RESUME">
+        Resume
+      </option>
+      <option value="NEWOWNER">
+        Newowner
+      </option>
     </select>
 
     <WalletSelection
@@ -236,12 +254,12 @@ export default {
   }),
 
   computed: {
-    qae1types() {
+    qae1types () {
       return QAE1.types.reduce((all, type) => {
-        all[type] = this.$t(`QAE1_TYPES.${type}`);
+        all[type] = this.$t(`QAE1_TYPES.${type}`)
 
-        return all;
-      }, {});
+        return all
+      }, {})
     },
     alternativeCurrency () {
       return this.$store.getters['session/currency']
