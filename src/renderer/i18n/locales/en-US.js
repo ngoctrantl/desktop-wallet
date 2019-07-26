@@ -209,6 +209,7 @@ export default {
     PAGE: 'Page',
     ROWS_PER_PAGE: 'Rows per page',
     NO_TRANSACTIONS: 'No transactions have been found. The latest transactions will be displayed here.',
+    NO_TOKENS: 'No tokens have been found.',
     NO_CONTACTS: 'No contacts to be shown.',
     NO_DELEGATES: 'No delegates to be shown.',
     NO_WALLETS: 'No wallets to be shown.'
@@ -601,8 +602,10 @@ export default {
       }
     },
 
+    // QAEEDIT
     WALLET: {
       TRANSACTIONS: 'Transactions',
+      TOKENS: 'Tokens/QAE',
       DELEGATES: 'Delegates',
       STATISTICS: 'Statistics',
       SIGN_VERIFY: 'Sign',
@@ -788,7 +791,8 @@ export default {
       IPFS: 'IPFS',
       TIMELOCK_TRANSFER: 'Timelock Transfer',
       MULTI_PAYMENT: 'Multi Payment',
-      DELEGATE_RESIGNATION: 'Delegate Resignation'
+      DELEGATE_RESIGNATION: 'Delegate Resignation',
+      TOKEN: 'Token/QAE'
     },
     ERROR: {
       TRANSFER: 'Your transaction could not be sent',
@@ -853,6 +857,7 @@ export default {
     OPEN_IN_EXPLORER: 'Open in Explorer',
     PASSPHRASE: 'Passphrase',
     PASSWORD: 'Encryption Password',
+    QAE: 'Tokens/QAE',
     RECIPIENT: 'Recipient',
     RESEND: 'Resend',
     RESENT_NOTICE: 'Transaction {transactionId} has been resent',
@@ -1013,6 +1018,13 @@ export default {
     SENDER: 'Sender',
     AMOUNT: 'Amount',
     NEW_TRANSACTIONS: 'This wallet has {count} new transaction{plural}. Press the refresh button to update.'
+  },
+
+  WALLET_TOKENS: {
+    NAME: 'Token Name',
+    SYMBOL: 'Token Symbol',
+    ID: 'Token ID',
+    BALANCE: 'Balance'
   },
 
   WALLET_TABLE: {

@@ -163,7 +163,7 @@ import { at, clone } from 'lodash'
 import { WalletSelectDelegate } from '@/components/Wallet'
 import { ButtonGeneric } from '@/components/Button'
 import { TransactionModal } from '@/components/Transaction'
-import { WalletExchange, WalletHeading, WalletTransactions, WalletDelegates, WalletStatistics } from '../'
+import { WalletExchange, WalletHeading, WalletTransactions, WalletTokens, WalletDelegates, WalletStatistics } from '../'
 import WalletSignVerify from '../WalletSignVerify'
 import { MenuTab, MenuTabItem } from '@/components/Menu'
 import SvgIcon from '@/components/SvgIcon'
@@ -181,6 +181,7 @@ export default {
     WalletSignVerify,
     WalletStatistics,
     WalletTransactions,
+    WalletTokens,
     SvgIcon
   },
 
@@ -217,6 +218,11 @@ export default {
           component: 'WalletTransactions',
           componentName: 'WalletTransactions',
           text: this.$t('PAGES.WALLET.TRANSACTIONS')
+        },
+        {
+          component: 'WalletTokens',
+          componentName: 'WalletTokens',
+          text: this.$t('PAGES.WALLET.TOKENS')
         },
         {
           component: 'WalletDelegates',
@@ -308,6 +314,9 @@ export default {
     currentTab () {
       switch (this.currentTab) {
         case 'WalletTransactions':
+          this.$synchronizer.focus('wallets', 'contacts')
+          break
+        case 'WalletTokens':
           this.$synchronizer.focus('wallets', 'contacts')
           break
         case 'WalletDelegates':

@@ -108,6 +108,10 @@ export default {
       return new NumberBuilder(value).decimalPlaces(fractionDigits)
     },
 
+    currency_decimals (value, decimals) {
+      return new NumberBuilder(value).decimalPlaces(decimals).toHuman().value
+    },
+
     currency_subToUnit (value, network) {
       const { fractionDigits } = network || this.session_network
       return new NumberBuilder(value).decimalPlaces(fractionDigits).toHuman().value

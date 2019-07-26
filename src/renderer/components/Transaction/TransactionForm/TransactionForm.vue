@@ -11,6 +11,7 @@
 /* eslint-disable vue/no-unused-components */
 import TransactionFormDelegateRegistration from './TransactionFormDelegateRegistration'
 import TransactionFormTransfer from './TransactionFormTransfer'
+import TransactionFormToken from './TransactionFormToken'
 import TransactionFormVote from './TransactionFormVote'
 import TransactionFormSecondSignature from './TransactionFormSecondSignature'
 import { find } from 'lodash'
@@ -21,6 +22,7 @@ export default {
   components: {
     TransactionFormDelegateRegistration,
     TransactionFormTransfer,
+    TransactionFormToken,
     TransactionFormVote,
     TransactionFormSecondSignature
   },
