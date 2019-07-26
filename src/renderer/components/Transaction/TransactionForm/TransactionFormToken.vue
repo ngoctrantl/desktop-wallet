@@ -3,37 +3,8 @@
     class="flex flex-col"
     @submit.prevent
   >
-    <select v-model="$v.qae.type.$model">
-      <option
-        selected
-        value="SEND"
-      >
-        Send
-      </option>
-      <option value="GENESIS">
-        Genesis (Create New Token)
-      </option>
-      <option disabled>
-        ───── Advanced ─────
-      </option>
-      <option value="BURN">
-        Burn
-      </option>
-      <option value="MINT">
-        Mint
-      </option>
-      <option value="PAUSE">
-        Pause
-      </option>
-      <option value="RESUME">
-        Resume
-      </option>
-      <option value="NEWOWNER">
-        Newowner
-      </option>
-    </select>
 
-    <ListDivided
+  <ListDivided
       v-if="senderLabel"
       :is-floating-label="true"
     >
@@ -47,6 +18,24 @@
         </span>
       </ListDividedItem>
     </ListDivided>
+
+    <InputSelect
+      v-model="$v.qae.type.$model"
+      :items="qae1types"
+      :label="$t('TRANSACTION.QAETYPE')"
+      name="qaetype"
+      class="flex-1"
+    />
+    <select v-model="$v.qae.type.$model">
+      <option selected value="SEND">Send</option>
+      <option value="GENESIS">Genesis (Create New Token)</option>
+      <option disabled>───── Advanced ─────</option>
+      <option value="BURN">Burn</option>
+      <option value="MINT">Mint</option>
+      <option value="PAUSE">Pause</option>
+      <option value="RESUME">Resume</option>
+      <option value="NEWOWNER">Newowner</option>
+    </select>
 
     <WalletSelection
       v-if="schema && schema.address"
@@ -247,6 +236,13 @@ export default {
   }),
 
   computed: {
+    qae1types() {
+      return QAE1.types.reduce((all, type) => {
+        all[type] = this.$t(`QAE1_TYPES.${type}`);
+
+        return all;
+      }, {});
+    },
     alternativeCurrency () {
       return this.$store.getters['session/currency']
     },

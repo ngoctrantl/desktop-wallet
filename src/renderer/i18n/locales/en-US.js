@@ -197,6 +197,16 @@ export default {
     spanish: 'Spanish'
   },
 
+  QAE1_TYPES: {
+    GENESIS: 'Genesis',
+    SEND: 'Send',
+    MINT: 'Mint',
+    BURN: 'Burn',
+    PAUSE: 'Pause',
+    RESUME: 'Resume',
+    NEWOWNER: 'Newowner'
+  },
+
   MARKET: {
     MARKET: 'Market',
     HISTORICAL_DATA: 'Historical data',
@@ -858,6 +868,7 @@ export default {
     PASSPHRASE: 'Passphrase',
     PASSWORD: 'Encryption Password',
     QAE: 'Tokens/QAE',
+    QAETYPE: 'Token/QAE Transaction Type',
     RECIPIENT: 'Recipient',
     RESEND: 'Resend',
     RESENT_NOTICE: 'Transaction {transactionId} has been resent',

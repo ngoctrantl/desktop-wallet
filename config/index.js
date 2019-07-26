@@ -43,6 +43,17 @@ exports.BIP39 = {
     'spanish'
   ]
 }
+exports.QAE1 = {
+  types: [
+    'GENESIS',
+    'SEND',
+    'MINT',
+    'BURN',
+    'PAUSE',
+    'RESUME',
+    'NEWOWNER'
+  ]
+}
 
 exports.TRANSACTION_TYPES = {
   TRANSFER: 0,
@@ -100,15 +111,14 @@ exports.PLUGINS = {
   path: path.resolve(os.homedir(), '.ark-desktop/plugins')
 }
 
-exports.THEMES = [
-  {
-    id: 'light',
-    title: 'Light theme' // TODO translate
-  },
-  {
-    id: 'dark',
-    title: 'Dark theme' // TODO translate
-  }
+exports.THEMES = [{
+  id: 'light',
+  title: 'Light theme' // TODO translate
+},
+{
+  id: 'dark',
+  title: 'Dark theme' // TODO translate
+}
 ]
 
 exports.V1 = {
