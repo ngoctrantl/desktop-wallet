@@ -198,13 +198,23 @@ export default {
   },
 
   QAE1_TYPES: {
-    GENESIS: 'Genesis',
-    SEND: 'Send',
-    MINT: 'Mint',
-    BURN: 'Burn',
-    PAUSE: 'Pause',
-    RESUME: 'Resume',
-    NEWOWNER: 'Newowner'
+    GENESIS: 'Create new token (Genesis)',
+    SEND: 'Send tokens (Send)'
+  },
+
+  QAE: {
+    URI_HELPER: 'Web URL for new token?',
+    URI_LABEL: 'Token URI (optional)',
+    NOTE_HELPER: 'Note about new token?',
+    NOTE_LABEL: 'Token note (optional)',
+    NAME_HELPER: 'Name of your new token?',
+    NAME_LABEL: 'Token name',
+    AMOUNT_HELPER: 'How many tokens?',
+    AMOUNT_LABEL: 'Token amount',
+    DECIMALS_HELPER: 'How many digits of decimal to support?',
+    DECIMALS_LABEL: 'Token decimals',
+    SYMBOL_HELPER: 'Short and all capitals',
+    SYMBOL_LABEL: 'Token Symbol (Ticker)'
   },
 
   MARKET: {

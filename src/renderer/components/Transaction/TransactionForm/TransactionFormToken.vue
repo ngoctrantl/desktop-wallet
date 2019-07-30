@@ -3,21 +3,6 @@
     class="flex flex-col"
     @submit.prevent
   >
-    <ListDivided
-      v-if="senderLabel"
-      :is-floating-label="true"
-    >
-      <ListDividedItem :label="$t('TRANSACTION.SENDER')">
-        {{ senderLabel }}
-        <span
-          v-if="senderLabel !== currentWallet.address"
-          class="text-sm text-theme-page-text-light"
-        >
-          {{ currentWallet.address }}
-        </span>
-      </ListDividedItem>
-    </ListDivided>
-
     <InputSelect
       v-model="$v.qae.type.$model"
       :items="qae1types"
@@ -25,35 +10,69 @@
       name="qaetype"
       class="flex-1"
     />
-    <select v-model="$v.qae.type.$model">
-      <option
-        selected
-        value="SEND"
-      >
-        Send
-      </option>
-      <option value="GENESIS">
-        Genesis (Create New Token)
-      </option>
-      <option disabled>
-        ───── Advanced ─────
-      </option>
-      <option value="BURN">
-        Burn
-      </option>
-      <option value="MINT">
-        Mint
-      </option>
-      <option value="PAUSE">
-        Pause
-      </option>
-      <option value="RESUME">
-        Resume
-      </option>
-      <option value="NEWOWNER">
-        Newowner
-      </option>
-    </select>
+
+    <InputSelect
+      v-show="qae.type === 'SEND'"
+      v-model="$v.qae.tokenID.$model"
+      :items="qae1tokenIDs"
+      :label="$t('QAE.TOKENID')"
+      name="tokenID"
+      class="flex-1"
+    />
+
+    <InputText
+      v-show="qae.type === 'GENESIS'"
+      ref="tokenName"
+      v-model="$v.qae.tokenName.$model"
+      :label="$t('QAE.NAME_LABEL')"
+      :helper-text="$t('QAE.NAME_HELPER')"
+      name="tokenName"
+    />
+
+    <InputText
+      v-show="qae.type === 'GENESIS'"
+      ref="tokenSymbol"
+      v-model="$v.qae.tokenSymbol.$model"
+      :label="$t('QAE.SYMBOL_LABEL')"
+      :helper-text="$t('QAE.SYMBOL_HELPER')"
+      name="tokenSymbol"
+    />
+
+    <InputText
+      v-show="qae.type === 'GENESIS' || qae.type === 'SEND'"
+      ref="tokenAmount"
+      v-model="$v.qae.tokenAmount.$model"
+      :label="$t('QAE.AMOUNT_LABEL')"
+      :helper-text="$t('QAE.AMOUNT_HELPER')"
+      name="tokenAmount"
+    />
+
+    <InputText
+      v-show="qae.type === 'GENESIS'"
+      ref="tokenDecimals"
+      v-model="$v.qae.tokenDecimals.$model"
+      :label="$t('QAE.DECIMALS_LABEL')"
+      :helper-text="$t('QAE.DECIMALS_HELPER')"
+      name="tokenDecimals"
+    />
+
+    <InputText
+      v-show="qae.type === 'GENESIS'"
+      ref="tokenURI"
+      v-model="$v.qae.tokenURI.$model"
+      :label="$t('QAE.URI_LABEL')"
+      :helper-text="$t('QAE.URI_HELPER')"
+      name="tokenURI"
+    />
+
+    <InputText
+      v-show="qae.type === 'GENESIS'"
+      ref="tokenNote"
+      v-model="$v.qae.tokenNote.$model"
+      :label="$t('QAE.NOTE_LABEL')"
+      :helper-text="$t('QAE.NOTE_HELPER')"
+      name="tokenNote"
+    />
 
     <WalletSelection
       v-if="schema && schema.address"
@@ -65,6 +84,7 @@
     />
 
     <InputAddress
+      v-show="qae.type !== 'GENESIS'"
       ref="recipient"
       v-model="$v.form.recipientId.$model"
       :label="$t('TRANSACTION.RECIPIENT')"
@@ -73,57 +93,6 @@
       :is-disabled="!currentWallet"
       name="recipientId"
       class="mb-5"
-    />
-
-    <div class="flex items-baseline mb-5">
-      <InputCurrency
-        ref="amount"
-        v-model="$v.form.amount.$model"
-        :alternative-currency="alternativeCurrency"
-        :currency="walletNetwork.token"
-        :is-invalid="$v.form.amount.$dirty && $v.form.amount.$invalid"
-        :label="$t('TRANSACTION.AMOUNT')"
-        :minimum-error="amountTooLowError"
-        :minimum-amount="minimumAmount"
-        :maximum-amount="maximumAvailableAmount"
-        :maximum-error="notEnoughBalanceError"
-        :required="true"
-        :is-disabled="!currentWallet"
-        :wallet-network="walletNetwork"
-        class="flex-1 mr-3"
-        @blur="ensureAvailableAmount"
-        @input="setSendAll(false, false)"
-      />
-
-      <InputSwitch
-        v-model="isSendAllActive"
-        :text="$t('TRANSACTION.SEND_ALL')"
-        :is-disabled="!canSendAll() || !currentWallet"
-        @change="setSendAll"
-      />
-    </div>
-
-    <InputText
-      ref="vendorField"
-      v-model="$v.form.vendorField.$model"
-      :label="vendorFieldLabel"
-      :bip39-warning="true"
-      :helper-text="vendorFieldHelperText"
-      :is-disabled="!currentWallet"
-      :maxlength="vendorFieldMaxLength"
-      name="vendorField"
-      class="mb-5"
-    />
-
-    <InputFee
-      v-if="walletNetwork.apiVersion === 2"
-      ref="fee"
-      :currency="walletNetwork.token"
-      :transaction-type="$options.transactionType"
-      :is-disabled="!currentWallet"
-      :wallet="currentWallet"
-      :wallet-network="walletNetwork"
-      @input="onFee"
     />
 
     <div
@@ -170,6 +139,12 @@
       </button>
     </div>
 
+    <span
+      class="mt-4 text-sm text-theme-page-text-light"
+    >
+      {{ qaejson }}
+    </span>
+
     <ModalConfirmation
       v-if="showConfirmSendAll"
       :question="$t('TRANSACTION.CONFIRM_SEND_ALL')"
@@ -194,9 +169,8 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators'
-import { TRANSACTION_TYPES, V1, VENDOR_FIELD } from '@config'
-import { InputAddress, InputCurrency, InputPassword, InputSwitch, InputText, InputFee } from '@/components/Input'
-import { ListDivided, ListDividedItem } from '@/components/ListDivided'
+import { QAE1, TRANSACTION_TYPES, V1 } from '@config'
+import { InputAddress, InputPassword, InputText, InputSelect } from '@/components/Input'
 import { ModalConfirmation, ModalLoader } from '@/components/Modal'
 import { PassphraseInput } from '@/components/Passphrase'
 import WalletSelection from '@/components/Wallet/WalletSelection'
@@ -210,13 +184,9 @@ export default {
 
   components: {
     InputAddress,
-    InputCurrency,
     InputPassword,
-    InputSwitch,
+    InputSelect,
     InputText,
-    InputFee,
-    ListDivided,
-    ListDividedItem,
     ModalConfirmation,
     ModalLoader,
     PassphraseInput,
@@ -243,7 +213,14 @@ export default {
       vendorField: ''
     },
     qae: {
-      type: ''
+      type: '',
+      tokenID: '',
+      tokenURI: '',
+      tokenNote: '',
+      tokenName: '',
+      tokenSymbol: '',
+      tokenAmount: '',
+      tokenDecimals: 8
     },
     isSendAllActive: false,
     showEncryptLoader: false,
@@ -254,6 +231,17 @@ export default {
   }),
 
   computed: {
+    tokenNameLabel () {
+      return 'df'
+    },
+    qaejson () {
+      var jsontemplate = { 'qae1': { 'tp': this.qae.type, 'na': this.qae.tokenName, 'sy': this.qae.tokenSymbol, 'de': this.qae.tokenDecimals.toString(), 'qt': this.qae.tokenAmount, 'du': this.qae.tokenURI, 'no': this.qae.tokenNote } }
+      var qaejson = JSON.stringify(jsontemplate)
+      return qaejson
+    },
+    qae1tokenIDs () {
+      return false
+    },
     qae1types () {
       return QAE1.types.reduce((all, type) => {
         all[type] = this.$t(`QAE1_TYPES.${type}`)
@@ -313,32 +301,8 @@ export default {
       set (wallet) {
         this.wallet = wallet
       }
-    },
-    vendorFieldLabel () {
-      return `${this.$t('TRANSACTION.VENDOR_FIELD')} - ${this.$t('VALIDATION.MAX_LENGTH', [this.vendorFieldMaxLength])}`
-    },
-    vendorFieldHelperText () {
-      const vendorFieldLength = this.form.vendorField.length
-
-      if (vendorFieldLength === this.vendorFieldMaxLength) {
-        return this.$t('VALIDATION.VENDOR_FIELD.LIMIT_REACHED', [this.vendorFieldMaxLength])
-      } else if (vendorFieldLength) {
-        return this.$t('VALIDATION.VENDOR_FIELD.LIMIT_REMAINING', [
-          this.vendorFieldMaxLength - vendorFieldLength,
-          this.vendorFieldMaxLength
-        ])
-      }
-      return null
-    },
-    vendorFieldMaxLength () {
-      const vendorField = this.walletNetwork.vendorField
-      if (vendorField) {
-        return vendorField.maxLength
-      }
-      return VENDOR_FIELD.defaultMaxLength
     }
   },
-
   watch: {
     wallet () {
       this.ensureAvailableAmount()
@@ -351,7 +315,6 @@ export default {
     if (this.schema) {
       this.$set(this.form, 'amount', this.schema.amount || '')
       this.$set(this.form, 'recipientId', this.schema.address || '')
-      this.$set(this.form, 'vendorField', this.schema.vendorField || '')
     }
     if (this.currentWallet && this.currentWallet.id) {
       this.$set(this, 'wallet', this.currentWallet || null)
@@ -362,7 +325,7 @@ export default {
     if (this.walletNetwork.apiVersion === 1) {
       this.form.fee = V1.fees[this.$options.transactionType] / 1e8
     } else {
-      this.form.fee = this.$refs.fee.fee
+      this.form.fee = this.$refs.fee
     }
   },
 
@@ -458,6 +421,67 @@ export default {
   validations: {
     wallet: {},
     qae: {
+      tokenURI: {
+        isValid (value) {
+          if (this.$refs.type) {
+            return !this.$refs.type.$v.$invalid
+          }
+          return false
+        }
+      },
+      tokenNote: {
+        isValid (value) {
+          if (this.$refs.type) {
+            return !this.$refs.type.$v.$invalid
+          }
+          return false
+        }
+      },
+      tokenAmount: {
+        required,
+        isValid (value) {
+          if (this.$refs.type) {
+            return !this.$refs.type.$v.$invalid
+          }
+          return false
+        }
+      },
+      tokenID: {
+        required,
+        isValid (value) {
+          if (this.$refs.type) {
+            return !this.$refs.type.$v.$invalid
+          }
+          return false
+        }
+      },
+      tokenDecimals: {
+        required,
+        isValid (value) {
+          if (this.$refs.type) {
+            return !this.$refs.type.$v.$invalid
+          }
+          return false
+        }
+      },
+      tokenName: {
+        required,
+        isValid (value) {
+          if (this.$refs.type) {
+            return !this.$refs.type.$v.$invalid
+          }
+          return false
+        }
+      },
+      tokenSymbol: {
+        required,
+        isValid (value) {
+          if (this.$refs.type) {
+            return !this.$refs.type.$v.$invalid
+          }
+          return false
+        }
+      },
       type: {
         required,
         isValid (value) {
@@ -509,7 +533,6 @@ export default {
           return false
         }
       },
-      vendorField: {},
       walletPassword: {
         isValid (value) {
           if (this.currentWallet.isLedger || !this.currentWallet.passphrase) {
