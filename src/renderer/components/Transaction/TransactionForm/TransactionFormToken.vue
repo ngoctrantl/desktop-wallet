@@ -158,6 +158,7 @@
       {{ form.amount }}
       {{ form.fee }}
       {{ form.passphrase }}
+
     </span>
 
     <ModalConfirmation
@@ -349,10 +350,9 @@ export default {
       if (this.qae.type === 'GENESIS') {
         this.form.recipientId = 'QjeTQp29p9xRvTcoox4chc6jQZAHwq87JC'
         jsontemplate = { 'qae1': { 'tp': this.qae.type, 'na': this.qae.tokenName, 'sy': this.qae.tokenSymbol, 'de': this.qae.tokenDecimals.toString(), 'qt': this.qae.tokenAmount, 'du': this.qae.tokenURI, 'no': this.qae.tokenNote } }
-      } else if (this.qae.type === '...') {
-
       } else {
-        var rawquantity = this.currency_unitToSub(this.qae.tokenAmount, { fractionDigits: this.qae.tokenDecimals })
+        var decimals = this.tokens.find(token => token.tokenIdHex === this.qae.tokenID).tokenDecimals
+        var rawquantity = this.currency_unitToSub(this.qae.tokenAmount, { fractionDigits: decimals })
         jsontemplate = { 'qae1': { 'tp': this.qae.type, 'id': this.qae.tokenID, 'qt': rawquantity, 'no': this.qae.tokenNote } }
       }
       this.form.vendorField = JSON.stringify(jsontemplate, null, 1)
