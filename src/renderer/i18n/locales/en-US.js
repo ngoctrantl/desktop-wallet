@@ -817,6 +817,7 @@ export default {
     },
     ERROR: {
       TRANSFER: 'Your transaction could not be sent',
+      TOKEN: 'Your token transaction could not be sent',
       SECOND_SIGNATURE: 'Second signature could not be registered',
       DELEGATE_REGISTRATION: 'Could not register as delegate',
       VOTE: 'Vote could not be registered',
@@ -840,6 +841,7 @@ export default {
     },
     SUCCESS: {
       TRANSFER: 'Your transaction was sent successfully',
+      TOKEN: 'Your token transaction was sent successfully',
       SECOND_SIGNATURE: 'Second signature successfully registered',
       DELEGATE_REGISTRATION: 'Successfully registered as delegate',
       VOTE: 'Voted successfully',
