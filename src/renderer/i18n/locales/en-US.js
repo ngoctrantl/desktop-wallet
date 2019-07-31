@@ -481,7 +481,7 @@ export default {
     VALIDATING: 'Validating peer details...',
     PLACEHOLDER: {
       HOST: 'http://1.2.3.4',
-      PORT: '4003'
+      PORT: '4103'
     }
   },
 
