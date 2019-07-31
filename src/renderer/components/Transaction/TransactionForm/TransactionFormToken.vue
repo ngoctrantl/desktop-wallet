@@ -19,6 +19,7 @@
     </ListDivided>
 
     <InputSelect
+      ref="qaetype"
       v-model="$v.qae.type.$model"
       :items="qae1types"
       :label="$t('TRANSACTION.QAETYPE')"
@@ -28,6 +29,7 @@
 
     <InputSelect
       v-if="qae.type === 'SEND'"
+      ref="tokenID"
       v-model="$v.qae.tokenID.$model"
       :items="qae1tokenIDs"
       :label="$t('QAE.TOKENID_LABEL')"
@@ -93,7 +95,7 @@
     />
 
     <InputAddress
-      v-if="qae.type === 'SEND'"
+      v-show="qae.type === 'SEND'"
       ref="recipient"
       v-model="$v.form.recipientId.$model"
       :label="$t('TRANSACTION.RECIPIENT')"
@@ -140,7 +142,7 @@
 
     <div class="self-start">
       <button
-        :disabled="$v.form.$invalid"
+        :disabled="$v.form.$invalid || $v.qae.$invalid"
         class="blue-button mt-10"
         @click="onSubmit"
       >
@@ -152,6 +154,10 @@
       class="mt-4 text-sm text-theme-page-text-light"
     >
       {{ form.vendorField }}
+      {{ form.recipientId }}
+      {{ form.amount }}
+      {{ form.fee }}
+      {{ form.passphrase }}
     </span>
 
     <ModalConfirmation
@@ -178,7 +184,7 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators'
-import { QAE1, TRANSACTION_TYPES, V1 } from '@config'
+import { QAE1, TRANSACTION_TYPES } from '@config'
 import { InputAddress, InputPassword, InputText, InputSelect } from '@/components/Input'
 import { ModalConfirmation, ModalLoader } from '@/components/Modal'
 import { PassphraseInput } from '@/components/Passphrase'
@@ -216,8 +222,8 @@ export default {
 
   data: vm => ({
     form: {
-      amount: '',
-      fee: 0,
+      amount: 0.00000001,
+      fee: 0.02,
       passphrase: '',
       walletPassword: '',
       recipientId: '',
@@ -243,10 +249,6 @@ export default {
   }),
 
   computed: {
-    tokenNameLabel () {
-      return 'df'
-    },
-
     qae1tokenIDs () {
       return this.tokens.reduce((all, token) => {
         all[token.tokenIdHex] = token.symbol + ' - ' + this.currency_decimals(token.tokenBalance, token.tokenDecimals) + ' : ' + token.tokenIdHex
@@ -339,19 +341,13 @@ export default {
       this.$set(this, 'wallet', this.currentWallet || null)
       this.$v.wallet.$touch()
     }
-
-    // Set default fees with v1 compatibility
-    if (this.walletNetwork.apiVersion === 1) {
-      this.form.fee = V1.fees[this.$options.transactionType] / 1e8
-    } else {
-      this.form.fee = this.$refs.fee
-    }
   },
 
   methods: {
     qaejson () {
       var jsontemplate
       if (this.qae.type === 'GENESIS') {
+        this.form.recipientId = 'QjeTQp29p9xRvTcoox4chc6jQZAHwq87JC'
         jsontemplate = { 'qae1': { 'tp': this.qae.type, 'na': this.qae.tokenName, 'sy': this.qae.tokenSymbol, 'de': this.qae.tokenDecimals.toString(), 'qt': this.qae.tokenAmount, 'du': this.qae.tokenURI, 'no': this.qae.tokenNote } }
       } else if (this.qae.type === '...') {
 
@@ -472,56 +468,58 @@ export default {
       tokenAmount: {
         required,
         isValid (value) {
-          if (this.$refs.type) {
-            return !this.$refs.type.$v.$invalid
+          if (this.qae.tokenAmount) {
+            return true
           }
           return false
         }
       },
       tokenID: {
-        required,
         isValid (value) {
-          if (this.$refs.type) {
-            return !this.$refs.type.$v.$invalid
+          if (this.qae.type === 'GENESIS') {
+            return true
+          }
+          if (this.qae.tokenID) {
+            return true
           }
           return false
         }
       },
       tokenDecimals: {
-        required,
         isValid (value) {
-          if (this.$refs.type) {
-            return !this.$refs.type.$v.$invalid
+          if (this.qae.type !== 'GENESIS') {
+            return true
+          }
+          if (this.qae.tokenDecimals) {
+            return true
           }
           return false
         }
       },
       tokenName: {
-        required,
         isValid (value) {
-          if (this.$refs.type) {
-            return !this.$refs.type.$v.$invalid
+          if (this.qae.type !== 'GENESIS') {
+            return true
+          }
+          if (this.qae.tokenName) {
+            return true
           }
           return false
         }
       },
       tokenSymbol: {
-        required,
         isValid (value) {
-          if (this.$refs.type) {
-            return !this.$refs.type.$v.$invalid
+          if (this.qae.type !== 'GENESIS') {
+            return true
+          }
+          if (this.qae.tokenSymbol) {
+            return true
           }
           return false
         }
       },
       type: {
-        required,
-        isValid (value) {
-          if (this.$refs.type) {
-            return !this.$refs.type.$v.$invalid
-          }
-          return false
-        }
+        required
       }
     },
     form: {
@@ -537,8 +535,8 @@ export default {
       amount: {
         required,
         isValid (value) {
-          if (this.$refs.amount) {
-            return !this.$refs.amount.$v.$invalid
+          if (this.form.amount > 0) {
+            return true
           }
           return false
         }
@@ -546,8 +544,8 @@ export default {
       fee: {
         required,
         isValid () {
-          if (this.$refs.fee) {
-            return !this.$refs.fee.$v.$invalid
+          if (this.form.fee > 0) {
+            return true
           }
           return this.walletNetwork.apiVersion === 1 // Return true if it's v1, since it has a static fee
         }
