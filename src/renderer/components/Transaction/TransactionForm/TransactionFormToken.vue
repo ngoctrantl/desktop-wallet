@@ -23,6 +23,7 @@
       v-model="$v.qae.type.$model"
       :items="qae1types"
       :label="$t('TRANSACTION.QAETYPE')"
+      :is-invalid="$v.qae.type.$error"
       name="qaetype"
       class="flex-1"
     />
@@ -33,6 +34,7 @@
       v-model="$v.qae.tokenID.$model"
       :items="qae1tokenIDs"
       :label="$t('QAE.TOKENID_LABEL')"
+      :is-invalid="$v.qae.tokenID.$error"
       name="tokenID"
       class="flex-1"
     />
@@ -42,7 +44,8 @@
       ref="tokenName"
       v-model="$v.qae.tokenName.$model"
       :label="$t('QAE.NAME_LABEL')"
-      :xhelper-text="$t('QAE.NAME_HELPER')"
+      :helper-text="$t('QAE.NAME_HELPER')"
+      :is-invalid="$v.qae.tokenName.$error"
       name="tokenName"
     />
 
@@ -51,7 +54,8 @@
       ref="tokenSymbol"
       v-model="$v.qae.tokenSymbol.$model"
       :label="$t('QAE.SYMBOL_LABEL')"
-      :xhelper-text="$t('QAE.SYMBOL_HELPER')"
+      :helper-text="$t('QAE.SYMBOL_HELPER')"
+      :is-invalid="$v.qae.tokenSymbol.$error"
       name="tokenSymbol"
     />
 
@@ -60,7 +64,8 @@
       ref="tokenAmount"
       v-model="$v.qae.tokenAmount.$model"
       :label="$t('QAE.AMOUNT_LABEL')"
-      :xhelper-text="$t('QAE.AMOUNT_HELPER')"
+      :helper-text="$t('QAE.AMOUNT_HELPER')"
+      :is-invalid="$v.qae.tokenAmount.$error"
       name="tokenAmount"
       class="mb-2"
     />
@@ -70,7 +75,8 @@
       ref="tokenDecimals"
       v-model="$v.qae.tokenDecimals.$model"
       :label="$t('QAE.DECIMALS_LABEL')"
-      :xhelper-text="$t('QAE.DECIMALS_HELPER')"
+      :helper-text="$t('QAE.DECIMALS_HELPER')"
+      :is-invalid="$v.qae.tokenDecimals.$error"
       name="tokenDecimals"
       class="mb-2"
     />
@@ -80,7 +86,8 @@
       ref="tokenURI"
       v-model="$v.qae.tokenURI.$model"
       :label="$t('QAE.URI_LABEL')"
-      :xhelper-text="$t('QAE.URI_HELPER')"
+      :helper-text="$t('QAE.URI_HELPER')"
+      :is-invalid="$v.qae.tokenURI.$error"
       name="tokenURI"
       class="mb-2"
     />
@@ -89,13 +96,14 @@
       ref="tokenNote"
       v-model="$v.qae.tokenNote.$model"
       :label="$t('QAE.NOTE_LABEL')"
-      :xhelper-text="$t('QAE.NOTE_HELPER')"
+      :helper-text="$t('QAE.NOTE_HELPER')"
+      :is-invalid="$v.qae.tokenNote.$error"
       name="tokenNote"
       class="mb-2"
     />
 
     <InputAddress
-      v-show="qae.type === 'SEND'"
+      v-if="qae.type === 'SEND'"
       ref="recipient"
       v-model="$v.form.recipientId.$model"
       :label="$t('TRANSACTION.RECIPIENT')"
@@ -150,17 +158,6 @@
       </button>
     </div>
 
-    <span
-      class="mt-4 text-sm text-theme-page-text-light"
-    >
-      {{ form.vendorField }}
-      {{ form.recipientId }}
-      {{ form.amount }}
-      {{ form.fee }}
-      {{ form.passphrase }}
-
-    </span>
-
     <ModalConfirmation
       v-if="showConfirmSendAll"
       :question="$t('TRANSACTION.CONFIRM_SEND_ALL')"
@@ -184,7 +181,7 @@
 </template>
 
 <script>
-import { required } from 'vuelidate/lib/validators'
+import { decimal, alphaNum, required, requiredIf, numeric, between, maxLength, minLength, url } from 'vuelidate/lib/validators'
 import { QAE1, TRANSACTION_TYPES } from '@config'
 import { InputAddress, InputPassword, InputText, InputSelect } from '@/components/Input'
 import { ModalConfirmation, ModalLoader } from '@/components/Modal'
@@ -250,6 +247,12 @@ export default {
   }),
 
   computed: {
+    ifQaeTypeNotGenesis () {
+      return this.qae.type !== 'GENESIS'
+    },
+    ifQaeTypeGenesis () {
+      return this.qae.type === 'GENESIS'
+    },
     qae1tokenIDs () {
       return this.tokens.reduce((all, token) => {
         all[token.tokenIdHex] = token.symbol + ' - ' + this.currency_decimals(token.tokenBalance, token.tokenDecimals) + ' : ' + token.tokenIdHex
@@ -346,13 +349,17 @@ export default {
 
   methods: {
     qaejson () {
-      var jsontemplate
+      let jsontemplate
       if (this.qae.type === 'GENESIS') {
-        this.form.recipientId = 'QjeTQp29p9xRvTcoox4chc6jQZAHwq87JC'
-        jsontemplate = { 'qae1': { 'tp': this.qae.type, 'na': this.qae.tokenName, 'sy': this.qae.tokenSymbol, 'de': this.qae.tokenDecimals.toString(), 'qt': this.qae.tokenAmount, 'du': this.qae.tokenURI, 'no': this.qae.tokenNote } }
+        // this.form.recipientId = 'QjeTQp29p9xRvTcoox4chc6jQZAHwq87JC'
+        let rawquantity = this.currency_unitToSub(this.qae.tokenAmount, { fractionDigits: this.qae.tokenDecimals })
+        jsontemplate = { 'qae1': { 'tp': this.qae.type, 'na': this.qae.tokenName, 'sy': this.qae.tokenSymbol, 'de': this.qae.tokenDecimals.toString(), 'qt': rawquantity, 'du': this.qae.tokenURI, 'no': this.qae.tokenNote } }
       } else {
-        var decimals = this.tokens.find(token => token.tokenIdHex === this.qae.tokenID).tokenDecimals
-        var rawquantity = this.currency_unitToSub(this.qae.tokenAmount, { fractionDigits: decimals })
+        if (!this.qae.tokenID) {
+          return
+        }
+        let decimals = this.tokens.find(token => token.tokenIdHex === this.qae.tokenID).tokenDecimals
+        let rawquantity = this.currency_unitToSub(this.qae.tokenAmount, { fractionDigits: decimals })
         jsontemplate = { 'qae1': { 'tp': this.qae.type, 'id': this.qae.tokenID, 'qt': rawquantity, 'no': this.qae.tokenNote } }
       }
       this.form.vendorField = JSON.stringify(jsontemplate, null, 1)
@@ -403,7 +410,7 @@ export default {
     async submit () {
       const transactionData = {
         amount: this.currency_unitToSub(this.form.amount),
-        recipientId: this.form.recipientId,
+        recipientId: (this.qae.type === 'GENESIS') ? 'QjeTQp29p9xRvTcoox4chc6jQZAHwq87JC' : this.form.recipientId,
         vendorField: this.form.vendorField,
         passphrase: this.form.passphrase,
         fee: this.currency_unitToSub(this.form.fee),
@@ -456,67 +463,42 @@ export default {
     wallet: {},
     qae: {
       tokenURI: {
-        isValid (value) {
-          return true
-        }
+        url,
+        maxLength: maxLength(32)
       },
       tokenNote: {
-        isValid (value) {
-          return true
-        }
+        maxLength: maxLength(32)
       },
       tokenAmount: {
         required,
-        isValid (value) {
-          if (this.qae.tokenAmount) {
-            return true
-          }
-          return false
-        }
+        decimal
       },
       tokenID: {
-        isValid (value) {
-          if (this.qae.type === 'GENESIS') {
-            return true
-          }
-          if (this.qae.tokenID) {
-            return true
-          }
-          return false
-        }
+        requiredIf: requiredIf(function (form) {
+          return this.qae.type !== 'GENESIS'
+        })
       },
       tokenDecimals: {
-        isValid (value) {
-          if (this.qae.type !== 'GENESIS') {
-            return true
-          }
-          if (this.qae.tokenDecimals) {
-            return true
-          }
-          return false
-        }
+        requiredIf: requiredIf(function (form) {
+          return this.qae.type === 'GENESIS'
+        }),
+        numeric,
+        between: between(0, 8)
       },
       tokenName: {
-        isValid (value) {
-          if (this.qae.type !== 'GENESIS') {
-            return true
-          }
-          if (this.qae.tokenName) {
-            return true
-          }
-          return false
-        }
+        requiredIf: requiredIf(function (form) {
+          return this.qae.type === 'GENESIS'
+        }),
+        minLength: minLength(3),
+        maxLength: maxLength(24)
       },
       tokenSymbol: {
-        isValid (value) {
-          if (this.qae.type !== 'GENESIS') {
-            return true
-          }
-          if (this.qae.tokenSymbol) {
-            return true
-          }
-          return false
-        }
+        requiredIf: requiredIf(function (form) {
+          return this.qae.type === 'GENESIS'
+        }),
+        alphaNum,
+        minLength: minLength(3),
+        maxLength: maxLength(8)
       },
       type: {
         required
@@ -524,31 +506,15 @@ export default {
     },
     form: {
       recipientId: {
-        required,
-        isValid (value) {
-          if (this.$refs.recipient) {
-            return !this.$refs.recipient.$v.$invalid
-          }
-          return false
-        }
+        requiredIf: requiredIf(function (form) {
+          return this.qae.type !== 'GENESIS'
+        })
       },
       amount: {
-        required,
-        isValid (value) {
-          if (this.form.amount > 0) {
-            return true
-          }
-          return false
-        }
+        required
       },
       fee: {
-        required,
-        isValid () {
-          if (this.form.fee > 0) {
-            return true
-          }
-          return this.walletNetwork.apiVersion === 1 // Return true if it's v1, since it has a static fee
-        }
+        required
       },
       passphrase: {
         isValid (value) {
