@@ -203,6 +203,7 @@ export default {
   },
 
   QAE: {
+    TOKENID_LABEL: 'Token to send',
     URI_HELPER: 'Web URL for new token?',
     URI_LABEL: 'Token URI (optional)',
     NOTE_HELPER: 'Note about new token?',

@@ -3,6 +3,21 @@
     class="flex flex-col"
     @submit.prevent
   >
+    <ListDivided
+      v-if="senderLabel"
+      :is-floating-label="true"
+    >
+      <ListDividedItem :label="$t('TRANSACTION.SENDER')">
+        {{ senderLabel }}
+        <span
+          v-if="senderLabel !== currentWallet.address"
+          class="text-sm text-theme-page-text-light"
+        >
+          {{ currentWallet.address }}
+        </span>
+      </ListDividedItem>
+    </ListDivided>
+
     <InputSelect
       v-model="$v.qae.type.$model"
       :items="qae1types"
@@ -12,79 +27,73 @@
     />
 
     <InputSelect
-      v-show="qae.type === 'SEND'"
+      v-if="qae.type === 'SEND'"
       v-model="$v.qae.tokenID.$model"
       :items="qae1tokenIDs"
-      :label="$t('QAE.TOKENID')"
+      :label="$t('QAE.TOKENID_LABEL')"
       name="tokenID"
       class="flex-1"
     />
 
     <InputText
-      v-show="qae.type === 'GENESIS'"
+      v-if="qae.type === 'GENESIS'"
       ref="tokenName"
       v-model="$v.qae.tokenName.$model"
       :label="$t('QAE.NAME_LABEL')"
-      :helper-text="$t('QAE.NAME_HELPER')"
+      :xhelper-text="$t('QAE.NAME_HELPER')"
       name="tokenName"
     />
 
     <InputText
-      v-show="qae.type === 'GENESIS'"
+      v-if="qae.type === 'GENESIS'"
       ref="tokenSymbol"
       v-model="$v.qae.tokenSymbol.$model"
       :label="$t('QAE.SYMBOL_LABEL')"
-      :helper-text="$t('QAE.SYMBOL_HELPER')"
+      :xhelper-text="$t('QAE.SYMBOL_HELPER')"
       name="tokenSymbol"
     />
 
     <InputText
-      v-show="qae.type === 'GENESIS' || qae.type === 'SEND'"
+      v-if="qae.type === 'GENESIS' || qae.type === 'SEND'"
       ref="tokenAmount"
       v-model="$v.qae.tokenAmount.$model"
       :label="$t('QAE.AMOUNT_LABEL')"
-      :helper-text="$t('QAE.AMOUNT_HELPER')"
+      :xhelper-text="$t('QAE.AMOUNT_HELPER')"
       name="tokenAmount"
+      class="mb-2"
     />
 
     <InputText
-      v-show="qae.type === 'GENESIS'"
+      v-if="qae.type === 'GENESIS'"
       ref="tokenDecimals"
       v-model="$v.qae.tokenDecimals.$model"
       :label="$t('QAE.DECIMALS_LABEL')"
-      :helper-text="$t('QAE.DECIMALS_HELPER')"
+      :xhelper-text="$t('QAE.DECIMALS_HELPER')"
       name="tokenDecimals"
+      class="mb-2"
     />
 
     <InputText
-      v-show="qae.type === 'GENESIS'"
+      v-if="qae.type === 'GENESIS'"
       ref="tokenURI"
       v-model="$v.qae.tokenURI.$model"
       :label="$t('QAE.URI_LABEL')"
-      :helper-text="$t('QAE.URI_HELPER')"
+      :xhelper-text="$t('QAE.URI_HELPER')"
       name="tokenURI"
+      class="mb-2"
     />
 
     <InputText
-      v-show="qae.type === 'GENESIS'"
       ref="tokenNote"
       v-model="$v.qae.tokenNote.$model"
       :label="$t('QAE.NOTE_LABEL')"
-      :helper-text="$t('QAE.NOTE_HELPER')"
+      :xhelper-text="$t('QAE.NOTE_HELPER')"
       name="tokenNote"
-    />
-
-    <WalletSelection
-      v-if="schema && schema.address"
-      v-model="$v.wallet.$model"
-      :compatible-address="$v.form.recipientId.$model"
-      class="mb-5"
-      profile-class="mb-5"
-      @select="ensureAvailableAmount"
+      class="mb-2"
     />
 
     <InputAddress
-      v-show="qae.type !== 'GENESIS'"
+      v-if="qae.type === 'SEND'"
       ref="recipient"
       v-model="$v.form.recipientId.$model"
       :label="$t('TRANSACTION.RECIPIENT')"
@@ -92,12 +101,12 @@
       :show-suggestions="true"
       :is-disabled="!currentWallet"
       name="recipientId"
-      class="mb-5"
+      class="mb-2"
     />
 
     <div
       v-if="currentWallet && currentWallet.isLedger"
-      class="mt-10"
+      class="mt-3"
     >
       {{ $t('TRANSACTION.LEDGER_SIGN_NOTICE') }}
     </div>
@@ -142,7 +151,7 @@
     <span
       class="mt-4 text-sm text-theme-page-text-light"
     >
-      {{ qaejson }}
+      {{ form.vendorField }}
     </span>
 
     <ModalConfirmation
@@ -173,9 +182,10 @@ import { QAE1, TRANSACTION_TYPES, V1 } from '@config'
 import { InputAddress, InputPassword, InputText, InputSelect } from '@/components/Input'
 import { ModalConfirmation, ModalLoader } from '@/components/Modal'
 import { PassphraseInput } from '@/components/Passphrase'
-import WalletSelection from '@/components/Wallet/WalletSelection'
 import TransactionService from '@/services/transaction'
 import onSubmit from './mixin-on-submit'
+import QreditSltService from '@/services/qreditslt'
+import { ListDivided, ListDividedItem } from '@/components/ListDivided'
 
 export default {
   name: 'TransactionFormToken',
@@ -187,10 +197,11 @@ export default {
     InputPassword,
     InputSelect,
     InputText,
+    ListDivided,
+    ListDividedItem,
     ModalConfirmation,
     ModalLoader,
-    PassphraseInput,
-    WalletSelection
+    PassphraseInput
   },
 
   mixins: [onSubmit],
@@ -222,6 +233,7 @@ export default {
       tokenAmount: '',
       tokenDecimals: 8
     },
+    tokens: [],
     isSendAllActive: false,
     showEncryptLoader: false,
     showLedgerLoader: false,
@@ -234,13 +246,13 @@ export default {
     tokenNameLabel () {
       return 'df'
     },
-    qaejson () {
-      var jsontemplate = { 'qae1': { 'tp': this.qae.type, 'na': this.qae.tokenName, 'sy': this.qae.tokenSymbol, 'de': this.qae.tokenDecimals.toString(), 'qt': this.qae.tokenAmount, 'du': this.qae.tokenURI, 'no': this.qae.tokenNote } }
-      var qaejson = JSON.stringify(jsontemplate)
-      return qaejson
-    },
+
     qae1tokenIDs () {
-      return false
+      return this.tokens.reduce((all, token) => {
+        all[token.tokenIdHex] = token.symbol + ' - ' + this.currency_decimals(token.tokenBalance, token.tokenDecimals) + ' : ' + token.tokenIdHex
+
+        return all
+      }, {})
     },
     qae1types () {
       return QAE1.types.reduce((all, type) => {
@@ -304,9 +316,16 @@ export default {
     }
   },
   watch: {
+    'qae': {
+      handler: function () {
+        this.qaejson()
+      },
+      deep: true
+    },
     wallet () {
       this.ensureAvailableAmount()
       this.$v.form.recipientId.$touch()
+      this.pullTokens()
     }
   },
 
@@ -330,6 +349,25 @@ export default {
   },
 
   methods: {
+    qaejson () {
+      var jsontemplate
+      if (this.qae.type === 'GENESIS') {
+        jsontemplate = { 'qae1': { 'tp': this.qae.type, 'na': this.qae.tokenName, 'sy': this.qae.tokenSymbol, 'de': this.qae.tokenDecimals.toString(), 'qt': this.qae.tokenAmount, 'du': this.qae.tokenURI, 'no': this.qae.tokenNote } }
+      } else if (this.qae.type === '...') {
+
+      } else {
+        var rawquantity = this.currency_unitToSub(this.qae.tokenAmount, { fractionDigits: this.qae.tokenDecimals })
+        jsontemplate = { 'qae1': { 'tp': this.qae.type, 'id': this.qae.tokenID, 'qt': rawquantity, 'no': this.qae.tokenNote } }
+      }
+      this.form.vendorField = JSON.stringify(jsontemplate, null, 1)
+    },
+
+    pullTokens () {
+      QreditSltService.getAllWalletTokens(this.currentWallet.address).then((result) => {
+        this.tokens = result
+      })
+    },
+
     emitNext (transaction) {
       this.$emit('next', {
         transaction,
@@ -423,18 +461,12 @@ export default {
     qae: {
       tokenURI: {
         isValid (value) {
-          if (this.$refs.type) {
-            return !this.$refs.type.$v.$invalid
-          }
-          return false
+          return true
         }
       },
       tokenNote: {
         isValid (value) {
-          if (this.$refs.type) {
-            return !this.$refs.type.$v.$invalid
-          }
-          return false
+          return true
         }
       },
       tokenAmount: {
