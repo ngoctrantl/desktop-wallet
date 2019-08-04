@@ -62,7 +62,7 @@ export default {
           value *= Math.pow(10, network.fractionDigits)
           // Subunits should not have decimals, although Intl.NumberFormat requires 2 at least
           // TODO workaround this limitation for any language
-          config.maximumFractionDigits = 2
+          config.maximumFractionDigits = 4
         } else {
           cryptoCurrency = config.currencyDisplay === 'symbol' ? network.symbol : network.token
           config.maximumFractionDigits || (config.maximumFractionDigits = network.fractionDigits)
@@ -122,7 +122,7 @@ export default {
       return new NumberBuilder(value).decimalPlaces(fractionDigits).toArktoshi().value
     },
 
-    currency_cryptoToCurrency (value, fromSubUnit = true, fractionDigits = 2) {
+    currency_cryptoToCurrency (value, fromSubUnit = true, fractionDigits = 4) {
       if (fromSubUnit) {
         value = this.currency_subToUnit(value)
       }
