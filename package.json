@@ -1,12 +1,12 @@
 {
   "private": true,
   "name": "qredit-desktop-wallet",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qredit/desktop-wallet.git"
   },
-  "author": "Qredit <nayiem@qredit.io>",
+  "author": "Qredit <info@qredit.io>",
   "contributors": [
     "Alex Barnsley <alex@ark.io>",
     "ItsANameToo <itsanametoo@protonmail.com>",
