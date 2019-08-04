@@ -1,5 +1,5 @@
 [{
-  "ip": "136.144.215.24",
+  "ip": "159.69.89.111",
   "port": 4103,
   "isHttps": false,
   "version": "2"
@@ -39,12 +39,5 @@
   "port": 4103,
   "isHttps": false,
   "version": "2"
-},
-{
-  "ip": "159.69.89.111",
-  "port": 4103,
-  "isHttps": false,
-  "version": "2"
 }
-
 ]
