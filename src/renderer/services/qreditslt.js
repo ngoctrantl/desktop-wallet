@@ -3,35 +3,35 @@ import axios from 'axios'
 class QreditSltService {
   async getTransaction (transactionid) {
     const response = await axios
-      .get(`https://qae.altilly.com/api/transaction/${transactionid}`)
+      .get(`https://qae.qredit.cloud/api/transaction/${transactionid}`)
 
     return response.data // .transform(response.data.Data, dateTimeFormat)
   }
 
   async getToken (tokenid) {
     const response = await axios
-      .get(`https://qae.altilly.com/api/token/${tokenid}`)
+      .get(`https://qae.qredit.cloud/api/token/${tokenid}`)
 
     return response.data // .transform(response.data.Data, dateTimeFormat)
   }
 
   async getTokens () {
     const response = await axios
-      .get(`https://qae.altilly.com/api/tokens`)
+      .get(`https://qae.qredit.cloud/api/tokens`)
 
     return response.data // .transform(response.data.Data, dateTimeFormat)
   }
 
   async getWalletTokens (walletid) {
     const response = await axios
-      .get(`https://qae.altilly.com/api/address/${walletid}`)
+      .get(`https://qae.qredit.cloud/api/address/${walletid}`)
 
     return response.data // .transform(response.data.Data, dateTimeFormat)
   }
 
   async getTransactions (tokenid) {
     const response = await axios
-      .get(`https://qae.altilly.com/api/transactions/${tokenid}`)
+      .get(`https://qae.qredit.cloud/api/transactions/${tokenid}`)
 
     return response.data // .transform(response.data.Data, dateTimeFormat)
   }

@@ -46,7 +46,8 @@ exports.BIP39 = {
 exports.QAE1 = {
   types: [
     'GENESIS',
-    'SEND'
+    'SEND',
+    'BURN'
   ]
 }
 

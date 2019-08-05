@@ -15,6 +15,7 @@
         >
           {{ currentWallet.address }}
         </span>
+        {{ this.formatter_networkCurrency(this.currentWallet.balance) }}
       </ListDividedItem>
     </ListDivided>
 
@@ -24,12 +25,13 @@
       :items="qae1types"
       :label="$t('TRANSACTION.QAETYPE')"
       :is-invalid="$v.qae.type.$error"
+      :helper-text="$t('QAE.TYPE_HELPER')"
       name="qaetype"
       class="flex-1"
     />
 
     <InputSelect
-      v-if="qae.type === 'SEND'"
+      v-if="ifQaeTypeNotGenesis"
       ref="tokenID"
       v-model="$v.qae.tokenID.$model"
       :items="qae1tokenIDs"
@@ -60,7 +62,7 @@
     />
 
     <InputText
-      v-if="qae.type === 'GENESIS' || qae.type === 'SEND'"
+      v-if="ifQaeTypeNeedAmount"
       ref="tokenAmount"
       v-model="$v.qae.tokenAmount.$model"
       :label="$t('QAE.AMOUNT_LABEL')"
@@ -71,7 +73,7 @@
     />
 
     <InputText
-      v-if="qae.type === 'GENESIS'"
+      v-if="ifQaeTypeGenesis"
       ref="tokenDecimals"
       v-model="$v.qae.tokenDecimals.$model"
       :label="$t('QAE.DECIMALS_LABEL')"
@@ -82,7 +84,7 @@
     />
 
     <InputText
-      v-if="qae.type === 'GENESIS'"
+      v-if="ifQaeTypeGenesis"
       ref="tokenURI"
       v-model="$v.qae.tokenURI.$model"
       :label="$t('QAE.URI_LABEL')"
@@ -103,7 +105,7 @@
     />
 
     <InputAddress
-      v-if="qae.type === 'SEND'"
+      v-if="ifQaeTypeSend"
       ref="recipient"
       v-model="$v.form.recipientId.$model"
       :label="$t('TRANSACTION.RECIPIENT')"
@@ -150,7 +152,7 @@
 
     <div class="self-start">
       <button
-        :disabled="$v.form.$invalid || $v.qae.$invalid"
+        :disabled="$v.form.$invalid || $v.qae.$invalid || notEnoughXQR"
         class="blue-button mt-10"
         @click="onSubmit"
       >
@@ -237,6 +239,7 @@ export default {
       tokenAmount: '',
       tokenDecimals: 8
     },
+    qaeWallet: 'QjeTQp29p9xRvTcoox4chc6jQZAHwq87JC',
     tokens: [],
     isSendAllActive: false,
     showEncryptLoader: false,
@@ -247,6 +250,15 @@ export default {
   }),
 
   computed: {
+    notEnoughXQR () {
+      return (parseInt(this.currency_unitToSub(this.form.amount)) + parseInt(this.currency_unitToSub(this.form.fee))) > parseInt(this.currentWallet.balance)
+    },
+    ifQaeTypeNeedAmount () {
+      return (this.qae.type === 'SEND') || (this.qae.type === 'BURN') || (this.qae.type === 'GENESIS')
+    },
+    ifQaeTypeSend () {
+      return this.qae.type === 'SEND'
+    },
     ifQaeTypeNotGenesis () {
       return this.qae.type !== 'GENESIS'
     },
@@ -256,14 +268,12 @@ export default {
     qae1tokenIDs () {
       return this.tokens.reduce((all, token) => {
         all[token.tokenIdHex] = token.symbol + ' - ' + this.currency_decimals(token.tokenBalance, token.tokenDecimals) + ' : ' + token.tokenIdHex
-
         return all
       }, {})
     },
     qae1types () {
       return QAE1.types.reduce((all, type) => {
         all[type] = this.$t(`QAE1_TYPES.${type}`)
-
         return all
       }, {})
     },
@@ -281,7 +291,6 @@ export default {
       if (!this.currentWallet) {
         return ''
       }
-
       const balance = this.formatter_networkCurrency(this.currentWallet.balance)
       return this.$t('TRANSACTION_FORM.ERROR.NOT_ENOUGH_BALANCE', { balance })
     },
@@ -350,11 +359,12 @@ export default {
   methods: {
     qaejson () {
       let jsontemplate
-      if (this.qae.type === 'GENESIS') {
-        // this.form.recipientId = 'QjeTQp29p9xRvTcoox4chc6jQZAHwq87JC'
+      if (this.ifQaeTypeGenesis) {
+        this.form.amount = 1000
         let rawquantity = this.currency_unitToSub(this.qae.tokenAmount, { fractionDigits: this.qae.tokenDecimals })
         jsontemplate = { 'qae1': { 'tp': this.qae.type, 'na': this.qae.tokenName, 'sy': this.qae.tokenSymbol, 'de': this.qae.tokenDecimals.toString(), 'qt': rawquantity, 'du': this.qae.tokenURI, 'no': this.qae.tokenNote } }
       } else {
+        this.form.amount = 0.00000001
         if (!this.qae.tokenID) {
           return
         }
@@ -406,17 +416,17 @@ export default {
         this.$set(this.form, 'amount', this.maximumAvailableAmount)
       }
     },
-
     async submit () {
       const transactionData = {
         amount: this.currency_unitToSub(this.form.amount),
-        recipientId: (this.qae.type === 'GENESIS') ? 'QjeTQp29p9xRvTcoox4chc6jQZAHwq87JC' : this.form.recipientId,
+        recipientId: (this.ifQaeTypeSend) ? this.form.recipientId : this.qaeWallet,
         vendorField: this.form.vendorField,
         passphrase: this.form.passphrase,
         fee: this.currency_unitToSub(this.form.fee),
         wif: this.form.wif,
         networkWif: this.walletNetwork.wif
       }
+
       if (this.currentWallet.secondPublicKey) {
         transactionData.secondPassphrase = this.form.secondPassphrase
       }
@@ -475,39 +485,45 @@ export default {
       },
       tokenID: {
         requiredIf: requiredIf(function (form) {
-          return this.qae.type !== 'GENESIS'
+          return this.ifQaeTypeNotGenesis
         })
       },
       tokenDecimals: {
         requiredIf: requiredIf(function (form) {
-          return this.qae.type === 'GENESIS'
+          return this.ifQaeTypeGenesis
         }),
         numeric,
         between: between(0, 8)
       },
       tokenName: {
         requiredIf: requiredIf(function (form) {
-          return this.qae.type === 'GENESIS'
+          return this.ifQaeTypeGenesis
         }),
         minLength: minLength(3),
         maxLength: maxLength(24)
       },
       tokenSymbol: {
         requiredIf: requiredIf(function (form) {
-          return this.qae.type === 'GENESIS'
+          return this.ifQaeTypeGenesis
         }),
         alphaNum,
         minLength: minLength(3),
         maxLength: maxLength(8)
       },
       type: {
-        required
+        required,
+        isValid (value) {
+          if (this.notEnoughXQR) {
+            return false
+          }
+          return true
+        }
       }
     },
     form: {
       recipientId: {
         requiredIf: requiredIf(function (form) {
-          return this.qae.type !== 'GENESIS'
+          return this.ifQaeTypeSend
         })
       },
       amount: {

@@ -198,12 +198,13 @@ export default {
   },
 
   QAE1_TYPES: {
-    GENESIS: 'Create new token (Genesis)',
-    SEND: 'Send tokens (Send)'
+    GENESIS: 'Create new token (GENESIS)',
+    SEND: 'Send tokens (SEND)',
+    BURN: 'Burn tokens (BURN)'
   },
 
   QAE: {
-    TOKENID_LABEL: 'Token to send',
+    TOKENID_LABEL: 'Select Token',
     URI_HELPER: 'URL format, max 32 characters',
     URI_LABEL: 'Token URI (optional)',
     NOTE_HELPER: 'max 32 characters',
@@ -215,7 +216,8 @@ export default {
     DECIMALS_HELPER: 'single digit, 0..8',
     DECIMALS_LABEL: 'Token decimals',
     SYMBOL_HELPER: 'all caps, 3-8 characters',
-    SYMBOL_LABEL: 'Token Symbol (Ticker)'
+    SYMBOL_LABEL: 'Token Symbol (Ticker)',
+    TYPE_HELPER: 'Genesis transactions cost 1000 XQR'
   },
 
   MARKET: {
