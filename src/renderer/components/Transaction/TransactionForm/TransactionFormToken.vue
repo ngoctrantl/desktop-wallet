@@ -15,7 +15,7 @@
         >
           {{ currentWallet.address }}
         </span>
-        {{ this.formatter_networkCurrency(this.currentWallet.balance) }}
+        {{ formatter_networkCurrency(currentWallet.balance) }}
       </ListDividedItem>
     </ListDivided>
 
