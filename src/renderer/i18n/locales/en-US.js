@@ -2,8 +2,8 @@ export default {
   COMMON: {
     ADDRESS: 'Address',
     ALL: 'All',
-    APP_NAME: 'Qredit Desktop Portal',
-    APP_NAME_SHORT: 'Qredit Desktop Portal',
+    APP_NAME: 'Qredit Desktop',
+    APP_NAME_SHORT: 'Qredit Desktop',
     APPEARANCE: 'Appearance',
     AVATAR: 'Avatar',
     BACK: 'Back',
@@ -76,22 +76,22 @@ export default {
     RESPONSIBILITY: {
       TITLE: 'Your Responsibility',
       STORAGE: {
-        EXPLANATION: 'The {PASSPHRASE} of each wallet address is able to sign transactions and move funds. This means if your computer dies but you have your passphrase, you can still access your funds. The Qredit Desktop Portal has an additional feature that lets you set an {ENCRYPTED} as well, for easier management. If your computer dies, you cannot use the encrypted password to access your funds from a different machine. {NEED}.',
+        EXPLANATION: 'The {PASSPHRASE} of each wallet address is able to sign transactions and move funds. This means if your computer dies but you have your passphrase, you can still access your funds. The Qredit Desktop has an additional feature that lets you set an {ENCRYPTED} as well, for easier management. If your computer dies, you cannot use the encrypted password to access your funds from a different machine. {NEED}.',
         PASSPHRASE: 'passphrase',
         ENCRYPTED: 'encrypted password',
         NEED: 'You will need the passphrase'
       },
       BACKUP: {
         ALWAYS: 'Always backup your passphrase and keep it in a safe place.',
-        OPTIONS: 'You can write it down on thick paper and store multiple copies in secure locations. You can also store it on an encrypted flash drive. Alternatively, you can use a Ledger Nano S USB hardware device, available at Ledger.com, to store and access your funds and the Qredit Desktop Portal. You can plug your Ledger Nano S into your computer and access the Qredit blockchain without needing to enter your passphrase.'
+        OPTIONS: 'You can write it down on thick paper and store multiple copies in secure locations. You can also store it on an encrypted flash drive. Alternatively, you can use a Ledger Nano S USB hardware device, available at Ledger.com, to store and access your funds and the Qredit Desktop. You can plug your Ledger Nano S into your computer and access the Qredit blockchain without needing to enter your passphrase.'
       },
       REMEMBER: 'Remember, anyone who has your passphrase can access your funds. Never share your account with anyone and avoid storing it in locations that are susceptible to hacks, such as the Cloud.'
     },
     TURN: {
       TITLE: 'Your Turn',
-      KNOWLEDGE: 'Now, armed with the knowledge of how important it is to keep your passphrases safe, you are ready to claim your financial autonomy with the Qredit Desktop Portal.',
+      KNOWLEDGE: 'Now, armed with the knowledge of how important it is to keep your passphrases safe, you are ready to claim your financial autonomy with the Qredit Desktop App.',
       SUPPORT: 'Qredit is an open-source ecosystem and if you need assistance, the Qredit community and team is here to help. Create a post on Telegram, or join the real-time chat system at Discord.',
-      CONCLUSION: 'Everyone here on the qredit.io team hopes you enjoy using the Qredit Desktop Portal to participate in the blockchain revolution!'
+      CONCLUSION: 'Everyone here on the qredit.io team hopes you enjoy using the Qredit Desktop App to participate in the blockchain revolution!'
     }
   },
 
@@ -638,7 +638,7 @@ export default {
 
     WALLET_EXCHANGE: {
       CHANGELLY_TERMS: {
-        TITLE: 'Purchase {ticker} directly within Qredit Desktop Portal with our Changelly integration',
+        TITLE: 'Purchase {ticker} directly within Qredit Desktop with our Changelly integration',
         CONTENT: 'Changelly lets you exchange other cryptocurrencies into {ticker} and has an option to buy {ticker} directly with your credit or debit cards.',
         CONFIRMATION: 'I have read and I agree with the {terms} and the {privacy} from Changelly. By clicking {button}, I acknowledge and understand that my transaction may trigger AML/KYC verification according to Changelly {kyc}.',
         TERMS_OF_USE: 'terms of use',

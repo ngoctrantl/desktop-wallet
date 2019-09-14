@@ -174,7 +174,7 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "build": {
-    "productName": "Qredit Desktop Portal",
+    "productName": "Qredit Desktop",
     "appId": "io.qredit.desktop-wallet",
     "compression": "maximum",
     "artifactName": "${name}-${os}-${arch}-${version}.${ext}",

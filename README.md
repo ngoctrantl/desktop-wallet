@@ -1,8 +1,8 @@
 
-# Qredit Desktop Portal
+# Qredit Desktop
 
 
-![Qredit Desktop Portal](./banner.png)
+![Qredit Desktop](./banner.png)
 
 [![Build Status](https://badgen.now.sh/circleci/github/qredit/desktop-wallet)](https://circleci.com/gh/ArkEcosystem/desktop-wallet)
 [![Latest Version](https://badgen.now.sh/github/release/qredit/desktop-wallet)](https://github.com/ArkEcosystem/desktop-wallet/releases)

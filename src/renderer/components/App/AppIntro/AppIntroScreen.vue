@@ -15,7 +15,7 @@
         class="h-full w-full flex items-center justify-center"
       >
         <img
-          :class="showLogo ? 'h-3/5 w-3/5' : 'h-full w-full'"
+          :class="showLogo ? 'h-3/5 w-3/5' : 'h-100% w-100%'"
           :src="assets_loadImage(image)"
         >
       </div>
