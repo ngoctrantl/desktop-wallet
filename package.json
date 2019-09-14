@@ -50,9 +50,9 @@
   },
   "dependencies": {
     "@arkecosystem/client": "^1.0.1",
-    "@arkecosystem/crypto": "^2.5.7",
+    "@arkecosystem/crypto": "git+https://git@github.com/qredit/crypto.git",
     "@arkecosystem/ledger-transport": "^0.1.0",
-    "@arkecosystem/peers": "^0.2.1",
+    "@arkecosystem/peers": "git+https://git@github.com/qredit/npm-peers.git",
     "@babel/runtime": "^7.4.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.21",
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
