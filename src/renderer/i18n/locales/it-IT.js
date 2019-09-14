@@ -22,6 +22,7 @@ export default {
     LANGUAGE: 'Lingua Applicazione',
     LEDGER: 'Ledger',
     LEDGER_WALLET: 'Questo è un portafoglio Ledger',
+    LOAD: 'Carica',
     NETWORK: 'Rete',
     NETWORK_NAME: 'Questo nome è fornito dalla rete',
     NEXT: 'Avanti',
@@ -135,6 +136,7 @@ export default {
     TOO_LONG: '\'{0}\' è troppo lungo',
     INVALID_URI: 'URI non valido',
     INVALID_FORMAT: 'Formato non valido',
+    INVALID_TYPE: 'Tipo non valido',
     MAX_LENGTH: 'Max {0}',
     MUST_BE_GREATER_THAN: 'Deve essere maggiore di {0}',
     NOT_MATCH: '\'{0}\' non coincide con \'{1}\'',
@@ -164,10 +166,11 @@ export default {
     VENDOR_FIELD: {
       LIMIT_REACHED: 'È possibile inserire un massimo di {0} caratteri'
     },
+    RECIPIENT_DIFFERENT_NETWORK: 'Il destinatario {0} appartiene ad un\'altra rete',
     REQUIRED: '\'{0}\' indispensabile',
     SEND_NOT_ENABLED: 'L\'invio non è abilitato per il portafoglio selezionato',
     WALLET_NOT_ACTIVE: 'Seleziona un portafoglio a apri l\'URI nuovamente',
-    WARNING_BIP39: '\'{0}\' è una frase segreta BIP39',
+    WARNING_BIP39: '\'{0}\' contiene una frase segreta BIP39',
     WARNING_NOT_BIP39: '\'{0}\' non è una frase segreta BIP39'
   },
 
@@ -179,7 +182,7 @@ export default {
   },
 
   TIME_FORMAT: {
-    'DEFAULT': 'Predefinito',
+    DEFAULT: 'Predefinito',
     '12H': '12h',
     '24H': '24h'
   },
@@ -232,7 +235,13 @@ export default {
     SETTINGS: {
       CURRENCY: 'Valuta',
       DARK_MODE: 'Modalità scura',
-      SCREENSHOT_PROTECTION: 'Protezione da screenshot',
+      SCREENSHOT_PROTECTION: {
+        TITLE: 'Protezione da screenshot',
+        QUESTION: 'Sei sicuro di voler disattivare la protezione da screenshot?',
+        NOTE: 'Questa opzione consente alle applicazioni di proteggere il contenuto della schermata, dall\'acquisizione o dalla copia tramite i programmi di cattura schermo',
+        SESSION_ONLY: 'Disabilita solo per questa sessione',
+        PERMANENTLY: 'Disabilita permanentemente'
+      },
       BACKGROUND_UPDATE_LEDGER: 'Aggiorna Ledger in background',
       BROADCAST_PEERS: 'Trasmetti a peer multipli',
       TITLE: 'Settaggi attuali',
@@ -277,12 +286,13 @@ export default {
   },
 
   MARKET_CHART_HEADER: {
-    PRICE: 'Prezzo'
+    PRICE: '{currency} Prezzo',
+    SHOW_CHART: 'Show chart'
   },
 
   BUTTON_CLIPBOARD: {
     DONE: 'Copiato!',
-    COPY_TO_CLIPBOARD: 'Copia negli appunti',
+    COPY_TO_CLIPBOARD: 'Copia {0} negli appunti',
     NOT_SUPPORTED: 'Copiare negli appunti non è supportato'
   },
 
@@ -318,6 +328,7 @@ export default {
   },
 
   INPUT_FEE: {
+    LAST: 'Ultima',
     MINIMUM: 'Minimo',
     AVERAGE: 'Media',
     MAXIMUM: 'Massimo',
@@ -481,7 +492,6 @@ export default {
     CONTACT_ALL: {
       CREATE_CONTACT: 'Crea un contatto',
       IMPORT_CONTACT: 'Importa contatto',
-      DELETE_CONTACT: 'Elimina questo contatto',
       INSTRUCTIONS: 'Questa pagina ti consente di creare contatti, facilitando la gestione degli indirizzi dando loro un nome identificativo',
       HEADER: 'I miei contatti',
       SHOW_CONTACT: 'Mostra contatti'
@@ -617,6 +627,7 @@ export default {
       ADDRESS: 'Indirizzo',
       NAME: 'Nome',
       VOTING_FOR: 'Vota per',
+      DELEGATE_NOT_ACTIVE: '{delegate} ({rank}) non é un delegato attivo',
       BALANCE: 'Saldo',
       DELETE: 'Rimuovi'
     },
@@ -757,7 +768,8 @@ export default {
       TIMELOCK_TRANSFER: 'Impossibile creare trasferimento Timelock',
       MULTI_PAYMENT: 'Impossibile creare pagamento multiplo',
       DELEGATE_RESIGNATION: 'La dimissione del Delegato non è andata a buon fine',
-      SAVE_OFFLINE: 'Impossibile salvare il tuo file transazione',
+      SAVE_OFFLINE: 'Impossibile salvare il file transazione',
+      LOAD_FROM_FILE: 'Impossibile caricare il file transazione',
       EXPIRED: 'Transazione scaduta prima di essere proccessata: {transactionId}',
       FEE_TOO_LOW: 'La transazione non può essere inviata perchè la commissione ({fee}) è troppo bassa',
       NOTHING_SENT: 'La transazione non può essere inviata. Controlla la tua connessione di rete o cambia peer'
@@ -788,7 +800,8 @@ export default {
       TIMELOCK_TRANSFER: 'Trasferimento Timelock creato con successo',
       MULTI_PAYMENT: 'Pagamento multiplo creato con successo',
       DELEGATE_RESIGNATION: 'Dimissioni Delegato date con successo',
-      SAVE_OFFLINE: 'File transazione creato con successo in: {path}'
+      SAVE_OFFLINE: 'File transazione creato con successo in: {path}',
+      LOAD_FROM_FILE: 'File transazione caricato con successo'
     },
     VOTE: {
       VOTE_DELEGATE: 'Vote per Delegato {delegate}',
@@ -813,6 +826,7 @@ export default {
     LEDGER_SIGN_WAIT: 'In attesa della firma dal Ledger. Si prega di controllare e firmare la transazione quando si è pronti.',
     LEDGER_SIGN_FAILED: 'Impossibile firmare la transazione con Ledger',
     LEDGER_USER_DECLINED: 'L\'utente ha rifiutato',
+    LOAD_FROM_FILE: 'Carica transazione da file',
     MULTIPLE: 'Multiplo',
     OPEN_IN_EXPLORER: 'Apri in Explorer',
     PASSPHRASE: 'Frase segreta',
@@ -933,6 +947,7 @@ export default {
     VOTES: 'Voti',
     VOTE: 'Vota',
     USERNAME_ERROR: 'Nessun carattere speciale o maiuscolo consentito',
+    USERNAME_EXISTS: 'Esiste già un delegato con questo username',
     USERNAME_MAX_LENGTH_ERROR: 'Il nome utente deve essere inferiore o uguale a 20 caratteri',
     ALREADY_REGISTERED: 'Questo portafoglio è già registrato come Delegato',
     BLOG: 'Guida al voto',
@@ -947,6 +962,10 @@ export default {
     AWAITING_VOTE_CONFIRMATION: 'Il tuo {type} è in attesa di conferma',
     LOADING_VOTE: 'Caricamento dei dettagli del voto ...',
     SEARCH_DELEGATE: 'Cerca delegato'
+  },
+
+  WALLET_GRID: {
+    LOADING_LEDGER: 'Caricamento portafogli Ledger...'
   },
 
   WALLET_RENAME: {

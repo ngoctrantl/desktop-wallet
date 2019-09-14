@@ -1,4 +1,5 @@
 import WalletAddress from './WalletAddress'
+import WalletGrid from './WalletGrid'
 import WalletIdenticon from './WalletIdenticon'
 import WalletIdenticonPlaceholder from './WalletIdenticonPlaceholder'
 import WalletRemovalConfirmation from './WalletRemovalConfirmation'
@@ -22,6 +23,7 @@ export * from './WalletButtons'
 
 export {
   WalletAddress,
+  WalletGrid,
   WalletIdenticon,
   WalletIdenticonPlaceholder,
   WalletRemovalConfirmation,
