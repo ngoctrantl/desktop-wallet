@@ -1,3 +1,4 @@
+
 <template>
   <form
     class="flex flex-col"
@@ -183,6 +184,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { decimal, alphaNum, required, requiredIf, numeric, between, maxLength, minLength, url } from 'vuelidate/lib/validators'
 import { QAE1, TRANSACTION_TYPES } from '@config'
 import { InputAddress, InputPassword, InputText, InputSelect } from '@/components/Input'
