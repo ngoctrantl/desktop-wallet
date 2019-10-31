@@ -220,7 +220,8 @@ export default {
     DECIMALS_LABEL: 'Token decimals',
     SYMBOL_HELPER: 'all caps, 3-8 characters',
     SYMBOL_LABEL: 'Token Symbol (Ticker)',
-    TYPE_HELPER: 'Genesis transactions cost 1000 XQR'
+    TYPE_HELPER: 'Genesis transactions cost 1000 XQR',
+    INTRO: 'Welcome to QAE'
   },
 
   MARKET: {
@@ -280,7 +281,12 @@ export default {
       },
       THEME: 'Theme'
     },
-    WALLETS: 'My wallets'
+    WALLETS: 'My wallets',
+    QAE: 'Qredit Always Evolving',
+    VALKYRIE: 'Valkyrie',
+    WAVE: 'Wave',
+    ALTILLY: 'Altilly',
+    MOTION: 'Motion'
   },
 
   APP_SIDEMENU_NOTIFICATION: {

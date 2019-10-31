@@ -1,1 +1,6 @@
 tailwind.js
+src/renderer/pages/Qae.vue
+src/renderer/pages/Valkyrie.vue
+src/renderer/pages/Altilly.vue
+src/renderer/pages/Motion.vue
+src/renderer/pages/Wave.vue

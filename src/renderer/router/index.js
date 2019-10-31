@@ -17,6 +17,31 @@ const router = new Router({
       name: 'announcements',
       component: require('@/pages/Announcements').default
     },
+    {
+      path: '/qae',
+      name: 'qae',
+      component: require('@/pages/Qae').default
+    },
+    {
+      path: '/valkyrie',
+      name: 'valkyrie',
+      component: require('@/pages/Valkyrie').default
+    },
+    {
+      path: '/motion',
+      name: 'motion',
+      component: require('@/pages/Motion').default
+    },
+    {
+      path: '/wave',
+      name: 'wave',
+      component: require('@/pages/Wave').default
+    },
+    {
+      path: '/altilly',
+      name: 'altilly',
+      component: require('@/pages/Altilly').default
+    },
     // {
     //   path: '/search',
     //   name: 'search',

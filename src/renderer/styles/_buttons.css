@@ -17,47 +17,63 @@ button:disabled {
 }
 
 .default-button {
-	@apply .mx-auto .font-semibold .py-4 .px-8 .border-transparent .rounded .transition .cursor-pointer
+  @apply .mx-auto .font-semibold .py-4 .px-8 .border-transparent .rounded .transition .cursor-pointer
 }
 
 .blue-button {
-	@apply default-button .bg-theme-button .text-theme-button-text
+  @apply default-button .bg-theme-button .text-theme-button-text
 }
 
 .blue-button:enabled:hover {
-	@apply .bg-blue .text-white .hover-button-blue-shadow-definition
+  @apply .bg-blue .text-white .hover-button-blue-shadow-definition
+}
+
+.altilly-button {
+  @apply default-button .bg-theme-button .text-theme-button-text
+}
+
+.altilly-button:enabled:hover {
+  @apply .bg-blue .text-white .hover-button-blue-shadow-definition
+}
+
+.markets-button {
+  @apply default-button .bg-theme-button .text-theme-button-text
+}
+
+.markets-button:enabled:hover {
+  @apply .bg-blue .text-white .hover-button-blue-shadow-definition
 }
 
 .green-button {
-	@apply default-button .bg-theme-action-button .text-grey-dark
+  @apply default-button .bg-theme-action-button .text-grey-dark
 }
 
 .green-button:enabled:hover {
-	@apply .bg-green .text-white .hover-button-green-shadow-definition
+  @apply .bg-green .text-white .hover-button-green-shadow-definition
 }
 
 .action-button {
-	@apply default-button .bg-theme-action-button .text-theme-action-button-text .py-2 .px-4
+  @apply default-button .bg-theme-action-button .text-theme-action-button-text .py-2 .px-4
 }
 
 .action-button:enabled:hover {
-	@apply .bg-theme-button .text-theme-action-button-text-hover
+  @apply .bg-theme-button .text-theme-action-button-text-hover
 }
 
 .option-heading-button {
-	@apply default-button .bg-theme-option-heading-button .text-theme-option-heading-button-text .py-2 .px-4
+  @apply default-button .bg-theme-option-heading-button .text-theme-option-heading-button-text .py-2 .px-4
 }
 
 .option-heading-button:enabled:hover {
-	@apply .bg-theme-option-heading-button-hover .text-white
+  @apply .bg-theme-option-heading-button-hover .text-white
 }
 
 .option-button {
-	@apply default-button .bg-theme-option-button .text-theme-option-button-text .py-2 .px-4
+  @apply default-button .bg-theme-option-button .text-theme-option-button-text .py-2 .px-4
 }
 
 .option-button:enabled:hover {
-	@apply .bg-theme-option-button-hover .text-white
+  @apply .bg-theme-option-button-hover .text-white
 }
 
 .svg-button {

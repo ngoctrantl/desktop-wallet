@@ -137,7 +137,7 @@ export default {
 
   computed: {
     background () {
-      return this.$store.getters['session/background'] || `wallpapers/${this.hasSeenIntroduction ? 1 : 2}Default.png`
+      return this.$store.getters['session/background'] || `wallpapers/${this.hasSeenIntroduction ? 1 : 2}Default.jpg`
     },
     hasAnyProfile () {
       return !!this.$store.getters['profile/all'].length

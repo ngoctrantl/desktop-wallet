@@ -214,6 +214,7 @@ export default {
 
     tabs () {
       const tabs = [
+
         {
           component: 'WalletTransactions',
           componentName: 'WalletTransactions',

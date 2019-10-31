@@ -51,7 +51,7 @@
   --theme-feature-item-selected-text: #ce6970;
   --theme-feature-item-indicator: #f03643;
 
-  --theme-button-special-choice: #e78068;
+  --theme-button-special-choice: #55449a;
 
   --theme-heading-background: #343956;
   --theme-heading-text: #c0cddf;
@@ -112,7 +112,7 @@
 
 .theme-dark {
   --theme-page: #23252c;
-  --theme-page-text: #787fa3;
+  --theme-page-text: #cbbeff;
   --theme-page-text-light: #585c6f;
   --theme-page-instructions-text: #ffffff;
   --theme-page-instructions-background: rgba(255,255,255,0.2);
@@ -121,9 +121,9 @@
   --theme-intro-gradient-1: rgba(45,47,56,0);
   --theme-intro-gradient-2: rgba(45,47,56,0.95);
 
-  --theme-header-text: #787fa3;
+  --theme-header-text: #9278f9;
   --theme-caption-text: #d7d9e7;
-  --theme-caption-read: #787fa3;
+  --theme-caption-read: #cbbeff;
   --theme-announcements-gradient-1: rgba(45,47,56,0);
   --theme-announcements-gradient-2: rgba(45,47,56,0.95);
 
@@ -159,7 +159,7 @@
   --theme-feature-item-selected-text: #c6799a;
   --theme-feature-item-indicator: #f03643;
 
-  --theme-button-special-choice: #e78068;
+  --theme-button-special-choice: #55449a;
 
   --theme-heading-background: #31333d;
   --theme-heading-text: #c0cddf;
