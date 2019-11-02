@@ -4,3 +4,4 @@ src/renderer/pages/Valkyrie.vue
 src/renderer/pages/Altilly.vue
 src/renderer/pages/Motion.vue
 src/renderer/pages/Wave.vue
+src/renderer/pages/Contact.vue

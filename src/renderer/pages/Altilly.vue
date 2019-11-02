@@ -124,13 +124,13 @@
             <div class="no-border" style="max-width:100%;">
               <h4 style="text-align:center;">
                 <b>Multiple Basemarkets</b>
-              </h4>
+              </h4>TextMissing
+              <br />TextMissing
             </div>
             <div class="no-border" style="max-width:100%;">
               <h4 style="text-align:center;">
                 <b>Zero-fee Mining</b>
               </h4>
-
               <span>
                 Altilly has its own Zero Fee Mining Pools.
                 <br />Mine directly to your Altilly Wallet(s) without paying any fees!
@@ -139,7 +139,8 @@
             <div class="no-border" style="max-width:100%;">
               <h4 style="text-align:center;">
                 <b>OTC Trading</b>
-              </h4>
+              </h4>TextMissing
+              <br />TextMissing
             </div>
           </div>
 
@@ -147,21 +148,20 @@
             <div class="no-border" style="max-width:100%;">
               <h4 style="text-align:center;">
                 <b>Initial Exchange Offerings</b>
-              </h4>
+              </h4>Present your project to large number of Altilly customers and ger help with raising the initial funding.
+              <br />IEO's on Altilly are customizable to your needs and preferences.
             </div>
             <div class="no-border" style="max-width:100%;">
               <h4 style="text-align:center;">
                 <b>AltillyPass</b>
-              </h4>
+              </h4>AltillyPass is an optional verification and membership program.
+              <br />There are multiple benefits for AltillyPass holders, including higher daily withdrawal limits, access to member only airdrops and discounts for Voyager Park.
             </div>
             <div class="no-border" style="max-width:100%;">
               <h4 style="text-align:center;">
                 <b>Trading Competitions</b>
-              </h4>
-              <span>
-                Altilly trading competition
-                <br />sentence 2
-              </span>
+              </h4>TextMissing
+              <br />TextMissing
             </div>
           </div>
         </div>
@@ -173,11 +173,6 @@
 <script>
 import { DashboardTransactions } from "@/components/Dashboard";
 import { MarketChart, MarketChartHeader } from "@/components/MarketChart";
-import {
-  WalletSidebar,
-  WalletButtonCreate,
-  WalletButtonImport
-} from "@/components/Wallet";
 import store from "@/store";
 
 export default {
@@ -191,12 +186,8 @@ export default {
     this.text = this.any;
   },
   components: {
-    DashboardTransactions,
     MarketChart,
-    MarketChartHeader,
-    WalletSidebar,
-    WalletButtonCreate,
-    WalletButtonImport
+    MarketChartHeader
   },
 
   computed: {
@@ -238,30 +229,6 @@ export default {
         });
       }
     }
-  },
-
-  /**
-   * Redirect to the profile creation page unless there is at least 1 profile
-   */
-  beforeRouteEnter(to, from, next) {
-    const chooseNext = async () => {
-      const profiles = await store.getters["profile/all"];
-
-      if (to.name === "profile-new") {
-        next();
-      } else if (profiles.length > 0) {
-        next(async vm => {
-          vm.$synchronizer.trigger("wallets");
-          vm.$synchronizer.focus("wallets", "market");
-        });
-      } else {
-        next({ name: "profile-new" });
-      }
-    };
-
-    store._IS_READY
-      ? chooseNext()
-      : store._vm.$root.$on("vuex-persist:ready", chooseNext);
   },
 
   methods: {

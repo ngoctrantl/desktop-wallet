@@ -286,7 +286,8 @@ export default {
     VALKYRIE: 'Valkyrie',
     WAVE: 'Wave',
     ALTILLY: 'Altilly',
-    MOTION: 'Motion'
+    MOTION: 'Motion',
+    CONTACT: 'Contact'
   },
 
   APP_SIDEMENU_NOTIFICATION: {

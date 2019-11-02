@@ -16,7 +16,7 @@
         <b>QAE</b> is Qredits Smart Contracts protocol, also known as
         <b>'Qredit Always Evolving'</b> built on the Qredit Blockchain.
         <br />Whether you are a developer, company or an individual, with QAE you can create your own digital asset for many different purposes.
-        <br />QAE comes in 3 different tastes for easy integration for your project.
+        <br />QAE comes in 3 different flavours for easy integration for your project.
         <br />
         <br />
 
@@ -38,7 +38,7 @@
             style="padding:5px;"
             @click="electron_openExternal(createtoken)"
           >
-            <b>How to create token</b>
+            <b>Create Token</b>
           </div>
           <div
             id="docs"
@@ -213,17 +213,18 @@
     <div class="flex flex-row pb-2 mb-2 border-b border-dashed border-theme-line-separator"></div>
     <div style="text-align:center;">
       <b>Limited offer!</b> All
-      <b>QAE</b> assets are allowed to be listed for
+      <b>QAE</b> assets are eligible to be listed for
       <b>free</b> on the Altilly Exchange!
       <br />As long as it meets the basic listing requirements.
     </div>
-    <div
-      id="listing"
-      class="blue-button blue-button:enabled:hover flex items-center justify-center"
-      style="margin:5px; padding:5px;"
-      @click="electron_openExternal(freelisting)"
-    >
-      <b>Click here to apply for free exchange listing!</b>
+    <div class="container pt-2">
+      <div
+        class="blue-button blue-button:enabled:hover flex items-center justify-center"
+        style="padding:5px;"
+        @click="electron_openExternal(freelisting)"
+      >
+        <b>Apply for Free Exchange Listing!</b>
+      </div>
     </div>
   </div>
 </template>
@@ -234,7 +235,8 @@ export default {
   data: () => ({
     docs: "http://docs.qredit.network/qae/documentation",
     freelisting: "https://www.altilly.com/page/addasset",
-    createtoken: "http://docs.qredit.network/qae/createtoken"
+    createtoken: "http://docs.qredit.network/qae/createtoken",
+    valkyrie: "https://qredit.io/valkyrie-deployer/"
   }),
   created() {
     this.text = this.any;

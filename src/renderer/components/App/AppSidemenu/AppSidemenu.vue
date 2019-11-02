@@ -48,7 +48,6 @@
             :title="$t('APP_SIDEMENU.QAE')"
             class="AppSidemenu__item"
             :is-horizontal="isHorizontal"
-            :show-badge="showUnread"
             icon="qae"
             @click="redirect($event)"
           />
@@ -59,29 +58,26 @@
             :title="$t('APP_SIDEMENU.VALKYRIE')"
             class="AppSidemenu__item"
             :is-horizontal="isHorizontal"
-            :show-badge="showUnread"
             icon="valkyrie"
             @click="redirect($event)"
           />
 
-          <!-- Altilly -->
+          <!--
           <MenuNavigationItem
             id="altilly"
             :title="$t('APP_SIDEMENU.ALTILLY')"
             class="AppSidemenu__item"
             :is-horizontal="isHorizontal"
-            :show-badge="showUnread"
             icon="altilly"
             @click="redirect($event)"
-          />
-          <!-- motion -->
+          /> -->
+          <!-- Motion -->
           <!--
           <MenuNavigationItem
             id="motion"
             :title="$t('APP_SIDEMENU.MOTION')"
             class="AppSidemenu__item"
             :is-horizontal="isHorizontal"
-            :show-badge="showUnread"
             icon="motion"
             @click="redirect($event)"
           /> -->
@@ -93,7 +89,6 @@
             :title="$t('APP_SIDEMENU.WAVE')"
             class="AppSidemenu__item"
             :is-horizontal="isHorizontal"
-            :show-badge="showUnread"
             icon="wave"
             @click="redirect($event)"
           /> -->

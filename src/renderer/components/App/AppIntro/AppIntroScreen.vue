@@ -153,7 +153,7 @@ export default {
 }
 
 .AppIntroScreen__container__left {
-  background-color: #2d2f38;
+  background-color: #ff000573;
 }
 
 .AppIntroScreen__container__left__logo {

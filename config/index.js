@@ -15,7 +15,7 @@ exports.PEERS = {
 }
 
 exports.ANNOUNCEMENTS = {
-  rssUrl: 'https://medium.com/feed/@hodlerenterprises'
+  rssUrl: 'https://hodler.enterprises/feed/'
 }
 
 exports.VENDOR_FIELD = {

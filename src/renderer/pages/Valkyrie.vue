@@ -19,7 +19,7 @@
       <div
         class="blue-button blue-button:enabled:hover flex items-center justify-center"
         style="padding:5px; max-width:150px;"
-        @click="electron_openExternal(valkyrie)"
+        @click="electron_openExternal(contact)"
       >
         <b>Contact Us</b>
       </div>
@@ -50,14 +50,14 @@
             <div
               class="blue-button blue-button:enabled:hover flex items-center justify-center"
               style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
+              @click="electron_openExternal(hodlertrade)"
             >
               <b>Trade</b>
             </div>
             <div
               class="blue-button blue-button:enabled:hover flex items-center justify-center"
               style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
+              @click="electron_openExternal(hodlerweb)"
             >
               <b>Website</b>
             </div>
@@ -74,14 +74,14 @@
             <div
               class="blue-button blue-button:enabled:hover flex items-center justify-center"
               style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
+              @click="electron_openExternal(xpsntrade)"
             >
               <b>Trade</b>
             </div>
             <div
               class="blue-button blue-button:enabled:hover flex items-center justify-center"
               style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
+              @click="electron_openExternal(xpsnweb)"
             >
               <b>Website</b>
             </div>
@@ -93,19 +93,12 @@
           <td>Governance</td>
           <td style="text-align:center;">Coin</td>
           <td style="text-align:center;">Fork</td>
-          <td style="text-align:center;">LM</td>
+          <td style="text-align:center;">IM</td>
           <td class="container" style="text-align:center; text-align:-webkit-center;">
             <div
               class="blue-button blue-button:enabled:hover flex items-center justify-center"
               style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
-            >
-              <b>Trade</b>
-            </div>
-            <div
-              class="blue-button blue-button:enabled:hover flex items-center justify-center"
-              style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
+              @click="electron_openExternal(imweb)"
             >
               <b>Website</b>
             </div>
@@ -122,14 +115,14 @@
             <div
               class="blue-button blue-button:enabled:hover flex items-center justify-center"
               style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
+              @click="electron_openExternal(antarestrade)"
             >
               <b>Trade</b>
             </div>
             <div
               class="blue-button blue-button:enabled:hover flex items-center justify-center"
               style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
+              @click="electron_openExternal(antaresweb)"
             >
               <b>Website</b>
             </div>
@@ -146,14 +139,14 @@
             <div
               class="blue-button blue-button:enabled:hover flex items-center justify-center"
               style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
+              @click="electron_openExternal(hodlqtrade)"
             >
               <b>Trade</b>
             </div>
             <div
               class="blue-button blue-button:enabled:hover flex items-center justify-center"
               style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
+              @click="electron_openExternal(hodlqweb)"
             >
               <b>Website</b>
             </div>
@@ -170,14 +163,14 @@
             <div
               class="blue-button blue-button:enabled:hover flex items-center justify-center"
               style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
+              @click="electron_openExternal(cgttrade)"
             >
               <b>Trade</b>
             </div>
             <div
               class="blue-button blue-button:enabled:hover flex items-center justify-center"
               style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
+              @click="electron_openExternal(cgtweb)"
             >
               <b>Website</b>
             </div>
@@ -194,7 +187,7 @@
             <div
               class="blue-button blue-button:enabled:hover flex items-center justify-center"
               style="margin:2px; padding:2px; max-width:90px;"
-              @click="electron_openExternal(voyagerpark)"
+              @click="electron_openExternal(p4uweb)"
             >
               <b>Website</b>
             </div>
@@ -213,9 +206,19 @@
 export default {
   name: "url",
   data: () => ({
-    valkyrie: "https://qredit.io/valkyrie-deployer",
-    arkdeployer: "https://deployer.ark.io",
-    persona: "https://persona.im"
+    contact: "https://qredit.io/contact/",
+    hodlertrade: "https://www.altilly.com/asset/HODLER",
+    hodlerweb: "https://voyagerpark.se",
+    xpsntrade: "https://www.altilly.com/asset/XPSN",
+    xpsnweb: "https://persona.im",
+    imweb: "https://liberland.info",
+    antarestrade: "https://www.altilly.com/asset/ANTARES",
+    antaresweb: "https://antares.energy",
+    hodlqtrade: "https://www.altilly.com/asset/HODLQ",
+    hodlqweb: "https://hodler.energy",
+    cgttrade: "https://www.altilly.com/asset/CGT",
+    cgtweb: "https://cryptoguesser.com",
+    p4uweb: "https://www.planet4us.com"
   })
 };
 </script>

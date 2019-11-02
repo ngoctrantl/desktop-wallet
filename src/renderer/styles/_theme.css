@@ -121,7 +121,7 @@
   --theme-intro-gradient-1: rgba(45,47,56,0);
   --theme-intro-gradient-2: rgba(45,47,56,0.95);
 
-  --theme-header-text: #9278f9;
+  --theme-header-text: #703dff;
   --theme-caption-text: #d7d9e7;
   --theme-caption-read: #cbbeff;
   --theme-announcements-gradient-1: rgba(45,47,56,0);
@@ -150,7 +150,7 @@
   --theme-wallet-sign-verify-message-text: #585c6f;
   --theme-wallet-grid-shadow: 0 5px 30px rgba(0,0,0, 0.15);
 
-  --theme-feature: #2d2f38;
+  --theme-feature: #2d2f38d9;
   --theme-feature-item-text: #5a5e7a;
   --theme-feature-item-hover: #403645;
   --theme-feature-item-alternative: #363844;
