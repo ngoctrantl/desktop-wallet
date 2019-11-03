@@ -188,6 +188,9 @@ export default {
   transition-property: transform, border, box-shadow;
   transition-duration: .2s;
   transition-timing-function: ease;
+  border-radius: 5px;
+  border: 1px solid;
+  border-color: grey;
 }
 .WalletGrid__wallet:hover {
   @apply rounded-lg z-10;

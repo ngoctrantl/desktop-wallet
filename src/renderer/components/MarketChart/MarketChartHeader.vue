@@ -1,6 +1,6 @@
 <template>
   <nav class="MarketChartHeader flex flex-row justify-between">
-    <div class="text-lg font-semibold mt-1 text-theme-chart-price">
+    <div class="text-lg font-semibold mt-1">
       <span v-if="price">
         {{ $t('MARKET_CHART_HEADER.PRICE', { currency: ticker }) }}:
         <!-- TODO price in crypto and fiat instead of only in 1 currency -->
@@ -17,6 +17,7 @@
             'bg-theme-button-special-choice text-white': activePeriod === period
           }"
           class="MarketChartHeader__button mr-2 font-semibold px-3 py-1 text-theme-page-text rounded"
+          style="color:#cbbeff;"
           :disabled="activePeriod === period"
           @click="emitPeriodChange(period)"
         >

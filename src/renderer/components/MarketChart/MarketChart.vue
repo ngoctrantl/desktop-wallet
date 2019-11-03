@@ -349,11 +349,15 @@ export default {
 
 <style lang="postcss" scoped>
 .MarketChartWrapper {
-  @apply .w-full .pt-10 .px-10 .rounded-t-lg;
+  @apply .w-full .pt-5 .px-10;
   transition: background-color .3s ease-in-out;
+    background:#262262;
+  color:#fff;
 }
 
 .MarketChart {
+  background:#262262;
+  color:#fff;
   height: auto;
   max-height: 315px;
   overflow: hidden;
