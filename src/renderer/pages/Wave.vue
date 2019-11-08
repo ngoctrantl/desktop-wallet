@@ -27,9 +27,9 @@
 export default {
   name: "url",
   data: () => ({
-    docs: "http://docs.qredit.network/qae/documentation",
+    docs: "http://docs.qredit.network/qae/qae-documentation.html",
     freelisting: "https://www.altilly.com/page/addasset",
-    createtoken: "http://docs.qredit.network/qae/createtoken"
+    createtoken: "http://docs.qredit.network/qae/token-interaction.html"
   }),
   created() {
     this.text = this.any;
