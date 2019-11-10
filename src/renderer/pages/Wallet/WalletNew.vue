@@ -311,11 +311,11 @@ export default {
     walletConfirmPassword: null,
     showEncryptLoader: false,
     backgroundImages: {
-      1: 'pages/wallet-new/choose-wallet.svg',
+      1: 'pages/wallet-new/choose-wallet.png',
       2: 'pages/wallet-new/backup-wallet.svg',
       3: 'pages/wallet-new/verify-passphrase.svg',
-      4: 'pages/wallet-new/encrypt-wallet.svg',
-      5: 'pages/wallet-new/protect-wallet.svg'
+      4: 'pages/wallet-new/encrypt-wallet.png',
+      5: 'pages/wallet-new/protect-wallet.png'
     }
   }),
 
