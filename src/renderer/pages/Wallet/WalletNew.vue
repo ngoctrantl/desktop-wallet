@@ -312,8 +312,8 @@ export default {
     showEncryptLoader: false,
     backgroundImages: {
       1: 'pages/wallet-new/choose-wallet.png',
-      2: 'pages/wallet-new/backup-wallet.svg',
-      3: 'pages/wallet-new/verify-passphrase.svg',
+      2: 'pages/wallet-new/backup-wallet.png',
+      3: 'pages/wallet-new/verify-passphrase.png',
       4: 'pages/wallet-new/encrypt-wallet.png',
       5: 'pages/wallet-new/protect-wallet.png'
     }

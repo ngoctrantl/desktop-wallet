@@ -13,7 +13,7 @@
           </p>
 
           <img
-            :src="assets_loadImage('pages/network-selection/background.svg')"
+            :src="assets_loadImage('pages/network-selection/background.png')"
             :title="$t('PAGES.NETWORK_OVERVIEW.INSTRUCTIONS.HEADER')"
             class="w-full xl:w-4/5 mt-10"
           >

@@ -244,11 +244,11 @@ export default {
     language: I18N.defaultLocale,
     step: 0,
     stepImages: [
-      'pages/intro/welcome.svg',
-      'pages/intro/power.svg',
-      'pages/intro/duty.svg',
-      'pages/intro/responsibility.svg',
-      'pages/intro/turn.svg'
+      'pages/intro/welcome.png',
+      'pages/intro/power.png',
+      'pages/intro/duty.png',
+      'pages/intro/responsibility.png',
+      'pages/intro/turn.png'
     ]
   }),
 
@@ -288,7 +288,7 @@ export default {
 
 <style lang="postcss" scoped>
 .AppIntro__1 .AppIntroScreen__container__left {
-  background-color: #ff000573;
+  background-color: #6d0909ed;
 }
 .AppIntro__1__languages {
   @apply .border-2 .rounded

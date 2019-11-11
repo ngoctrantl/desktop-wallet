@@ -190,9 +190,9 @@ export default {
     walletConfirmPassword: null,
     showEncryptLoader: false,
     backgroundImages: {
-      1: 'pages/wallet-new/import-wallet.svg',
-      2: 'pages/wallet-new/encrypt-wallet.svg',
-      3: 'pages/wallet-new/protect-wallet.svg'
+      1: 'pages/wallet-new/import-wallet.png',
+      2: 'pages/wallet-new/encrypt-wallet.png',
+      3: 'pages/wallet-new/protect-wallet.png'
     }
   }),
 

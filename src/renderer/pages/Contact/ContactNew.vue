@@ -82,7 +82,7 @@ export default {
 
   computed: {
     backgroundImage () {
-      return 'pages/contact-new/wallet.svg'
+      return 'pages/contact-new/wallet.png'
     },
     addressError () {
       if (this.$v.schema.address.$invalid) {
